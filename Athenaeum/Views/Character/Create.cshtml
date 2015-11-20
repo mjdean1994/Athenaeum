@@ -1,0 +1,189 @@
+﻿@using CodeKicker.BBCode
+@{
+    ViewBag.Title = "Create Character";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Create Character</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Characters", "Index", "Character")</li>
+            <li class="active">Create Character</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostCreate", "Character", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <fieldset class="no-padding">
+            <label>Name <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="name" id="name" pattern=".{2,12}" placeholder="Exactly as it appears in-game" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Full Name</label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="fullname" id="fullname" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Race <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="race" required>
+                            <optgroup label="Alliance">
+                                <option value="Human">Human</option>
+                                <option value="Dwarf">Dwarf</option>
+                                <option value="Gnome">Gnome</option>
+                                <option value="Night Elf">Night Elf</option>
+                                <option value="Draenei">Draenei</option>
+                                <option value="Worgen">Worgen</option>
+                                <option value="Tushui Pandaren">Tushui Pandaren</option>
+                            </optgroup>
+                            <optgroup label="Horde">
+                                <option value="Orc">Orc</option>
+                                <option value="Troll">Troll</option>
+                                <option value="Tauren">Tauren</option>
+                                <option value="Forsaken">Forsaken</option>
+                                <option value="Blood Elf">Blood Elf</option>
+                                <option value="Goblin">Goblin</option>
+                                <option value="Huojin Pandaren">Huojin Pandaren</option>
+                            </optgroup>
+                            <optgroup label="Other">
+                                <option value="High Elf">High Elf</option>
+                                <option value="Mok'nathal">Mok'nathal</option>
+                                <option value="Ogre">Ogre</option>
+                                <option value="Dragonkin">Dragonkin</option>
+                                <option value="Other">Other</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        
+            <label>Class <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="charClass" required>
+                            <option value="Death Knight">Death Knight</option>
+                            <option value="Druid">Druid</option>
+                            <option value="Hunter">Hunter</option>
+                            <option value="Mage">Mage</option>
+                            <option value="Monk">Monk</option>
+                            <option value="Paladin">Paladin</option>
+                            <option value="Priest">Priest</option>
+                            <option value="Rogue">Rogue</option>
+                            <option value="Shaman">Shaman</option>
+                            <option value="Warlock">Warlock</option>
+                            <option value="Warrior">Warrior</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        
+            <label>Guild</label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="guild" class="form-control">
+                    </div>
+                </div>
+            </div>
+        
+            <label>Introduction</label>
+            <small class="pull-right" id="introductionCount"></small>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" maxlength="1000" name="introduction" id="introduction" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        
+            <label>Personality</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="personality" id="personality" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        
+            <label>Appearance</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="appearance" id="appearance" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        
+            <label>History</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="history" id="history" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        
+            <label>Image</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div class="input input-file">
+                        <div class="button">
+                            <input type="file" name="image" onchange="document.getElementById('urlHolder').value = this.value" />
+                            Browse
+                        </div>
+                        <input type="text" id="urlHolder" placeholder="Image will be resized to be 400x300" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" class="btn-u" id="submitBtn">Create Character</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#submitBtn").click(function() {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Creating Character...");
+                $("#submitBtn").type = "button";
+            });
+
+            $("#introduction").on("change paste keyup", function () {
+                var text = $(this).val();
+                $("#introductionCount").html(text.length + " / 1000");
+            });
+
+            //set it as the page loads so that we're comparing apples to apples
+            var text = $("#introduction").val();
+            $("#introductionCount").html(text.length + " / 1000");
+        })
+    </script>
+}

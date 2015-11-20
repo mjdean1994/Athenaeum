@@ -1,0 +1,88 @@
+﻿@model Athenaeum.ViewModels.Home.HomeExploreViewModel
+@{
+    ViewBag.Title = "Explore";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Explore</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Explore</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="headline"><h3>Latest Characters</h3></div>
+            <table class="table table-striped">
+                <tbody>
+                    @foreach (var character in Model.Characters)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(character.Name, "Details", "Character", new { id = character.CharacterId }, null)</td>
+                            <td>@character.FullName</td>
+                            <td class="text-right">@character.Race @character.Class</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <div class="headline"><h3>Latest Guilds</h3></div>
+            <table class="table table-striped">
+                <tbody>
+                    @foreach (var guild in Model.Guilds)
+                    {
+                        <tr>
+                            <td>@Html.ActionLink(guild.Name, "Details", "Guild", new { id = guild.GuildId }, null)</td>
+                            <td class="text-right">@guild.Faction</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="headline"><h3>Latest Compositions</h3></div>
+    <table class="table table-striped">
+        <tbody>
+            @foreach (var composition in Model.Compositions)
+            {
+                <tr>
+                    @if (composition.IsFeatured)
+                    {
+                        <td><i class="fa fa-star" title="Featured Composition"></i></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    <td>@Html.ActionLink(composition.Title, "Details", "Composition", new { id = composition.CompositionId }, null)</td>
+                    <td>@Html.ActionLink(composition.Author.UserName, "Profile", "Account", new { username = composition.Author.UserName }, null)</td>
+                    <td class="text-right">@composition.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="headline"><h3>New Pictures</h3></div>
+    <div class="row team-v5">
+        @foreach (var picture in Model.Pictures)
+        {
+            <div class="col-sm-3">
+                    <a href="@Url.Content("~/Gallery/Details/" + picture.PictureId)">
+                        <div class="team-img">
+
+                            <img class="img-responsive" src="@picture.ImageUrl" alt="">
+                            <div class="team-hover text-center">
+                                <h3>@picture.Title</h3>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+        }
+    </div>
+</div>

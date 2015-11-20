@@ -1,0 +1,128 @@
+﻿@using CodeKicker.BBCode
+@model Athenaeum.ViewModels.Guild.GuildEditViewModel
+@{
+    ViewBag.Title = "Edit Guild";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Edit Guild - @Model.Name</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Guilds", "Index", "Guild")</li>
+            <li>@Html.ActionLink(Model.Name, "Details", "Guild", new {id = Model.GuildId}, null)</li>
+            <li class="active">Edit Guild</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostEdit", "Guild", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="id" value="@Model.GuildId"/>
+        <fieldset class="no-padding">
+            <label>Guild Name <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" maxlength="24" name="name" id="name" value="@Model.Name" placeholder="Exactly as it appears in-game" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Tagline</label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" value="@Model.Tagline" name="tagline" id="tagline" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <label>Status <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="status" required>
+                            @if (Model.Status == "Inactive")
+                            {
+                                <option value="Active">Active</option>
+                                <option value="Inactive" selected>Inactive</option>
+                            }
+                            else
+                            {
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <label>Introduction</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" maxlength="1000" name="introduction" id="introduction" class="form-control">@Model.Introduction.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>Background</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="background" id="backgroud" class="form-control">@Model.Background.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>OOC Information</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="ooc" id="ooc" class="form-control">@Model.OocInformation.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>Image</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div class="input input-file">
+                        <div class="button">
+                            <input type="file" name="image" onchange="document.getElementById('urlHolder').value = this.value" />
+                            Browse
+                        </div>
+                        <input type="text" id="urlHolder" placeholder="Image will be resized to be 800x160" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" id="submitBtn" class="btn-u">Edit Guild</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Updating Guild...");
+                $("#submitBtn").type = "button";
+            });
+        })
+    </script>
+}

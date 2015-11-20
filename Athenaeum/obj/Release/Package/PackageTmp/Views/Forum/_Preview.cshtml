@@ -1,0 +1,36 @@
+﻿@using CodeKicker.BBCode
+@using Microsoft.AspNet.Identity
+@model Athenaeum.Models.ForumPost
+
+<div class="list-group">
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-xs-2">
+                <img class="img-responsive" src="@Model.Owner.ImageUrl" />
+                <h3>
+                    @Html.ActionLink(Model.Owner.UserName, "Profile", "Account", new { username = Model.Owner.UserName }, null)
+                    @if (!string.IsNullOrEmpty(Model.Owner.Title))
+                    {
+                        <br /><small>@Model.Owner.Title</small>
+                    }
+                </h3>
+            </div>
+            <div class="col-xs-10">
+                <div>
+                    <span class="pull-left">
+
+                    </span>
+                    <span class="pull-right">
+                        @if (Model.IsEdited)
+                        {
+                            <i class="fa fa-pencil" title="This post has been edited"></i>
+                        }
+                        @Model.PostedDate.ToString("hh:mm:ss tt | MMMM dd, yyyy")
+                    </span>
+                </div>
+                <div class="clearfix margin-bottom-10"></div>
+                @Html.Raw(BBCode.ToHtml(Model.Body))
+            </div>
+        </div>
+    </div>
+</div>

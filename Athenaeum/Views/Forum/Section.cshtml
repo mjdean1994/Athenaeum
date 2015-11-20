@@ -1,0 +1,53 @@
+﻿@using System.Activities.Statements
+@model Athenaeum.Models.ForumSection
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">@Model.Name</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Forums", "Index", "Forum")</li>
+            <li class="active">@Model.Name</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container">
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Create Thread", "CreateThread", "Forum", new { id = Model.ForumSectionId }, new { @class = "btn-u margin-top-20" })
+    }
+
+    <div class="item-group margin-top-20">
+        @foreach (var item in Model.Threads.OrderBy(x => x.IsSticky).ThenBy(x => x.UpdatedDate))
+        {
+            <a href="@Url.Content("~/Forum/Thread/" + item.ForumThreadId)" class="list-group-item">
+                <div class="col-xs-8">
+                    <h3>
+
+                        @if (item.IsLocked)
+                        {
+                            <small><i class="fa fa-lock"></i></small>
+                        }
+                        @if (item.IsSticky)
+                        {
+                            <small><i class="fa fa-thumb-tack"></i></small>
+                        }
+                        @item.Title
+                    </h3>
+                    </div>
+                <div class="col-xs-4">
+                    <span class="pull-right text-right">
+                    @item.UpdatedDate.ToString("hh:mm:ss tt")
+                    <br />
+                    @item.UpdatedDate.ToString("MMMM dd, yyyy")
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+                </a>
+            }
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@model List<Athenaeum.ViewModels.Guild.GuildIndexViewModel>
+@{
+    ViewBag.Title = "Guilds";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            Guilds
+            @if (Request.IsAuthenticated)
+            {
+                <small><a href="@Url.Action("Create", "Guild")"><i class="fa fa-plus-circle"></i></a></small>
+            }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li class="active">Guilds</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+      
+    <nav class="text-center">
+        <ul class="pagination pagination-sm">
+            <li>@Html.ActionLink("A", "Index", "Guild", new { startLetter = "A" }, null)</li>
+            <li>@Html.ActionLink("B", "Index", "Guild", new { startLetter = "B" }, null)</li>
+            <li>@Html.ActionLink("C", "Index", "Guild", new { startLetter = "C" }, null)</li>
+            <li>@Html.ActionLink("D", "Index", "Guild", new { startLetter = "D" }, null)</li>
+            <li>@Html.ActionLink("E", "Index", "Guild", new { startLetter = "E" }, null)</li>
+            <li>@Html.ActionLink("F", "Index", "Guild", new { startLetter = "F" }, null)</li>
+            <li>@Html.ActionLink("G", "Index", "Guild", new { startLetter = "G" }, null)</li>
+            <li>@Html.ActionLink("H", "Index", "Guild", new { startLetter = "H" }, null)</li>
+            <li>@Html.ActionLink("I", "Index", "Guild", new { startLetter = "I" }, null)</li>
+            <li>@Html.ActionLink("J", "Index", "Guild", new { startLetter = "J" }, null)</li>
+            <li>@Html.ActionLink("K", "Index", "Guild", new { startLetter = "K" }, null)</li>
+            <li>@Html.ActionLink("L", "Index", "Guild", new { startLetter = "L" }, null)</li>
+            <li>@Html.ActionLink("M", "Index", "Guild", new { startLetter = "M" }, null)</li>
+            <li>@Html.ActionLink("N", "Index", "Guild", new { startLetter = "N" }, null)</li>
+            <li>@Html.ActionLink("O", "Index", "Guild", new { startLetter = "O" }, null)</li>
+            <li>@Html.ActionLink("P", "Index", "Guild", new { startLetter = "P" }, null)</li>
+            <li>@Html.ActionLink("Q", "Index", "Guild", new { startLetter = "Q" }, null)</li>
+            <li>@Html.ActionLink("R", "Index", "Guild", new { startLetter = "R" }, null)</li>
+            <li>@Html.ActionLink("S", "Index", "Guild", new { startLetter = "S" }, null)</li>
+            <li>@Html.ActionLink("T", "Index", "Guild", new { startLetter = "T" }, null)</li>
+            <li>@Html.ActionLink("U", "Index", "Guild", new { startLetter = "U" }, null)</li>
+            <li>@Html.ActionLink("V", "Index", "Guild", new { startLetter = "V" }, null)</li>
+            <li>@Html.ActionLink("W", "Index", "Guild", new { startLetter = "W" }, null)</li>
+            <li>@Html.ActionLink("X", "Index", "Guild", new { startLetter = "X" }, null)</li>
+            <li>@Html.ActionLink("Y", "Index", "Guild", new { startLetter = "Y" }, null)</li>
+            <li>@Html.ActionLink("Z", "Index", "Guild", new { startLetter = "Z" }, null)</li>
+        </ul>
+    </nav>
+
+    <table class="table table-striped">
+        <tbody>
+            @foreach (var guild in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(guild.Name, "Details", "Guild", new { id = guild.GuildId }, null)</td>
+                    <td class="text-right">@guild.Faction</td>
+                </tr>
+            }
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td>No guilds found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,84 @@
+K:\Lunar Lexicon\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.XML
+K:\Lunar Lexicon\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.dll
+K:\Lunar Lexicon\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.pdb
+K:\Lunar Lexicon\CodeKicker.BBCode\bin\Debug\de-DE\CodeKicker.BBCode.resources.dll
+K:\Lunar Lexicon\CodeKicker.BBCode\bin\Debug\it-IT\CodeKicker.BBCode.resources.dll
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csprojResolveAssemblyReference.cache
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.resources
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.de-DE.resources
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.it-IT.resources
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csproj.GenerateResource.Cache
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\de-DE\CodeKicker.BBCode.resources.dll
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\it-IT\CodeKicker.BBCode.resources.dll
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.dll
+K:\Lunar Lexicon\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.pdb
+D:\TESORP\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.XML
+D:\TESORP\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.dll
+D:\TESORP\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.pdb
+D:\TESORP\CodeKicker.BBCode\bin\Debug\de-DE\CodeKicker.BBCode.resources.dll
+D:\TESORP\CodeKicker.BBCode\bin\Debug\it-IT\CodeKicker.BBCode.resources.dll
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csprojResolveAssemblyReference.cache
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.resources
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.de-DE.resources
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.it-IT.resources
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csproj.GenerateResource.Cache
+D:\TESORP\CodeKicker.BBCode\obj\Debug\de-DE\CodeKicker.BBCode.resources.dll
+D:\TESORP\CodeKicker.BBCode\obj\Debug\it-IT\CodeKicker.BBCode.resources.dll
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.dll
+D:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.pdb
+E:\TESORP\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.XML
+E:\TESORP\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.dll
+E:\TESORP\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.pdb
+E:\TESORP\CodeKicker.BBCode\bin\Debug\de-DE\CodeKicker.BBCode.resources.dll
+E:\TESORP\CodeKicker.BBCode\bin\Debug\it-IT\CodeKicker.BBCode.resources.dll
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csprojResolveAssemblyReference.cache
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.resources
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.de-DE.resources
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.it-IT.resources
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csproj.GenerateResource.Cache
+E:\TESORP\CodeKicker.BBCode\obj\Debug\de-DE\CodeKicker.BBCode.resources.dll
+E:\TESORP\CodeKicker.BBCode\obj\Debug\it-IT\CodeKicker.BBCode.resources.dll
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.dll
+E:\TESORP\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.pdb
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.XML
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.dll
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.pdb
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\de-DE\CodeKicker.BBCode.resources.dll
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\it-IT\CodeKicker.BBCode.resources.dll
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.resources
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.de-DE.resources
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.it-IT.resources
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csproj.GenerateResource.Cache
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\de-DE\CodeKicker.BBCode.resources.dll
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\it-IT\CodeKicker.BBCode.resources.dll
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.dll
+C:\Users\Matt\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.pdb
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.XML
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.dll
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.pdb
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\de-DE\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\bin\Debug\it-IT\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csprojResolveAssemblyReference.cache
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.resources
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.de-DE.resources
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.it-IT.resources
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csproj.GenerateResource.Cache
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\de-DE\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\it-IT\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.dll
+C:\Users\mdean\Documents\Athenaeum\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.pdb
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.XML
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.dll
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\bin\Debug\CodeKicker.BBCode.pdb
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\bin\Debug\de-DE\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\bin\Debug\it-IT\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csprojResolveAssemblyReference.cache
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.resources
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.de-DE.resources
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.Messages.it-IT.resources
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.csproj.GenerateResource.Cache
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\de-DE\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\it-IT\CodeKicker.BBCode.resources.dll
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.dll
+C:\Users\mdean\Downloads\Athenaeum (1)\CodeKicker.BBCode\obj\Debug\CodeKicker.BBCode.pdb

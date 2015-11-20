@@ -1,0 +1,149 @@
+﻿@model List<Athenaeum.Models.ForumCategory>
+@{
+    ViewBag.Title = "Forums";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Forums</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Forums</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+@if (User.IsInRole("moderator") || User.IsInRole("admin"))
+{
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Forum Administration</span>
+                    <p>This is an Admin-only feature. If you believe you are seeing this section in error, please contact us immediately so that we can resolve the problem.</p>
+                </div>
+                <div class="col-md-6 text-center btn-buy">
+                    <a href="#" class="btn-u btn-u-lg" data-toggle="modal" data-target="#createNewCategoryModal">Create New Category</a>
+                </div>
+                <div class="col-md-6 text-center btn-buy">
+                    <a href="#" class="btn-u btn-u-lg" data-toggle="modal" data-target="#createNewSectionModal">Create New Section</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/row-->
+
+    <div class="modal" id="createNewCategoryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">Create News Category</h4>
+                </div>
+                @using (Html.BeginForm("CreateCategory", "Forum", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+                {
+                    <div class="modal-body">
+
+                        <label>Category Name <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <div>
+                                    <input type="text" name="category" id="category" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Sort Order <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <div>
+                                    <input type="text" name="sortOrder" id="sortOrder" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-u btn-u">Submit</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="createNewSectionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                    <h4 class="modal-title">Create News Category</h4>
+                </div>
+                @using (Html.BeginForm("CreateSection", "Forum", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+                {
+                    <div class="modal-body">
+
+                        <label>Section Name <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <div>
+                                    <input type="text" name="section" id="section" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Category <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <div>
+                                    <select class="form-control" name="categoryId">
+                                        @foreach (var item in Model)
+                                        {
+                                            <option value="@item.ForumCategoryId">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label>Description <span class="color-red">*</span></label>
+                        <div class="row sky-space-20">
+                            <div class="col-md-7 col-md-offset-0">
+                                <div>
+                                    <input type="text" name="description" id="description" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-u btn-u">Submit</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    @foreach (var category in Model)
+    {
+        <div class="headline">
+            <h2>@category.Name</h2>
+        </div>
+
+        <div class="list-group">
+            @foreach (var fsection in category.Sections.OrderBy(x => x.Name).ToList())
+            {
+                <a href="@Url.Content("~/Forum/Section/" + fsection.ForumSectionId)" class="list-group-item">
+                    <h3>@fsection.Name</h3>
+                    <p>@fsection.Description</p>
+                </a>
+            }
+        </div>
+    }
+</div>
+

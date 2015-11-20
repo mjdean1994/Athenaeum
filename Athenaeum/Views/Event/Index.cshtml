@@ -1,0 +1,54 @@
+﻿@model List<Athenaeum.Models.Event>
+@{
+    ViewBag.Title = "Upcoming Events";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            Upcoming Events
+            @if (Request.IsAuthenticated)
+            {
+                <small><a href="@Url.Action("Create", "Guild")"><i class="fa fa-plus-circle"></i></a></small>
+            }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Upcoming Events</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content blog-full-width">
+    
+    @if (Model.Count == 0)
+    {
+        <h4 class="margin-bottom-20">There are no upcoming events.</h4>
+    }
+    @foreach (var item in Model)
+    {
+        <!--Blog Post-->
+        <div class="blog margin-bottom-40">
+            <div class="blog-img">
+                <img class="img-responsive" src="@item.ImageUrl" alt="">
+            </div>
+            <h2>@Html.ActionLink(item.Title, "Details", "Event", new {id = item.EventId}, null)</h2>
+            <div class="blog-post-tags">
+                <ul class="list-unstyled list-inline blog-info">
+                    <li><i class="fa fa-calendar"></i> @item.StartDate.ToString("MMMM dd, yyyy") - @item.EndDate.ToString("MMMM dd, yyyy")</li>
+                    <li><i class="fa fa-pencil"></i> @Html.ActionLink(item.Author.UserName, "Profile", "Account", new {username = item.Author.UserName}, null)</li>
+                    <li><i class="fa fa-globe"></i> @item.Faction</li>
+                </ul>
+            </div>
+            <p>
+                @item.Introduction
+            </p>
+            <p><a class="btn-u btn-u-small" href="@Url.Content("~/Event/Details/" + item.EventId)"><i class="fa fa-plus"></i> Read More</a></p>
+        </div>
+        <!--End Blog Post-->
+        <hr/>
+    }
+    
+    @Html.ActionLink("Event Archive", "Archive", "Event", new {@class = "btn-u btn-u-sm"})
+</div>
+

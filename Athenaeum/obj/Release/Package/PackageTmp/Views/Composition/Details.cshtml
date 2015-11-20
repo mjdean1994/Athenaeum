@@ -1,0 +1,191 @@
+﻿@using CodeKicker.BBCode
+@using Microsoft.AspNet.Identity
+@model Athenaeum.Models.Composition
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            @Model.Title
+            @if (Model.IsFeatured)
+            {
+                <small> <i class="fa fa-star color-yellow" title="Featured Composition"></i></small>
+            }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Compositions", "Index", "Composition")</li>
+            <li class="active">@Model.Title</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+<div class="container content-sm">
+
+    @if (User.Identity.GetUserName() == Model.Author.UserName || User.IsInRole("admin"))
+    {
+        <!-- Single button -->
+        <div class="btn-group pull-right">
+            <button type="button" class="btn-u btn-u-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-cog"></i> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink("Edit", "Edit", "Composition", new { id = Model.CompositionId }, null)</li>
+                @if (User.IsInRole("admin") || User.IsInRole("god"))
+                {
+                    <li>@Html.ActionLink("Toggle Feature", "FeatureToggle", "Composition", new { compositionId = Model.CompositionId }, null)</li>   
+                }
+                <li><a href="#" data-toggle="modal" data-target="#deleteModal">Delete</a></li>
+            </ul>
+        </div>
+        
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-warning"></i> Warning!</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete <strong>@Model.Title</strong>? This action cannot be undone.
+                </div>
+                  <div class="modal-footer text-right">
+                        @Html.ActionLink("Delete", "Delete", "Composition", new { id = Model.CompositionId }, new {@class = "btn-u"})
+                      <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Cancel</button>
+                  </div>
+            </div>
+          </div>
+        </div>
+    }
+
+    <div class="news-v3 margin-bottom-30">
+        <div class="news-v3-in">
+            <ul class="list-inline posted-info">
+                <li>By @Html.ActionLink(Model.Author.UserName, "Profile", "Account", new {username = Model.Author.UserName}, null)</li>
+                <li>@Model.Type</li>
+                <li>Posted @Model.UpdatedDate.ToString("MMMM dd, yyyy")</li>
+            </ul>
+            <h2>@Model.Title
+                @if (Model.IsFeatured)
+                {
+                    <small> <i class="fa fa-star color-yellow" title="Featured Composition"></i></small>
+                }
+            </h2>
+            <p>@Html.Raw(BBCode.ToHtml(Model.Body))</p>
+        </div>
+    </div>
+
+    <div class="media">
+        <!-- End News v3 -->
+        <h2 class="margin-bottom-20">Comments <span id="commentsLoading" class="hidden"><i class="fa fa-spin fa-spinner"></i></span><span class="hidden" id="commentCount"></span></h2>
+        <!-- Blog Comments -->
+        <div id="commentSection">
+
+        </div>
+    </div>
+
+    <!-- End Blog Comments -->
+    @if (Request.IsAuthenticated)
+    {
+        <h2 class="margin-bottom-20">Post a Comment</h2>
+        <!-- Form -->
+        <div id="sky-form3" class="sky-form comment-style">
+            <fieldset>
+                <div class="sky-space-30">
+                    <div>
+                        <textarea rows="8" id="commentMessage" name="message" id="message" placeholder="Write comment here ..." class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <p><button type="button" id="commentSubmit" class="btn-u">Submit</button>
+                </p>
+            </fieldset>
+        </div>
+        <!-- End Form -->
+    }
+    else
+    {
+        <h2 class="margin-bottom-20">@Html.ActionLink("Login", "Login", "Account") to Post a Comment</h2>
+        <!-- Form -->
+        <form action="" id="sky-form3" class="sky-form comment-style">
+            <fieldset>
+                <div class="sky-space-30">
+                    <div>
+                        <textarea rows="8" name="message" id="message" placeholder="Write comment here ..." class="form-control disabled" readonly></textarea>
+                    </div>
+                </div>
+
+                <p><button type="button" class="btn-u disabled">Submit</button>
+                </p>
+            </fieldset>
+        </form>
+        <!-- End Form -->
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        function loadComments() {
+            var id = @Model.CompositionId;
+
+            $("#commentsLoading").removeClass("hidden");
+
+            $.getJSON("../loadcomments", { id: id })
+                .done(function(data) {
+                    $("#commentCount").html("(" + data.length + ")");
+
+                    $("#commentCount").removeClass("hidden");
+
+                    $("#commentSection").html("");
+
+                    $.each(data, function(index, value) {
+                        @{ var canDelete = User.IsInRole("moderator") || User.IsInRole("admin");}
+                        var canDelete = "@canDelete" == "True";
+                        
+                        if (canDelete) {
+                            var newHtml = '<div class="row blog-comments margin-bottom-30"><div class="col-sm-2 sm-margin-bottom-40"><img src="' + value.ImageUrl + '" alt=""></div><div class="col-sm-10"><div class="comments-itself-light"><h4><a href="../../Account/Profile?username=' + value.Author + '">' + value.Author + '</a><small class="pull-right"> <a title="Delete Comment" href="../../Home/DeleteComment/' + value.CommentId + '"><i class="fa fa-trash"></i></a></small></h4><p>' + value.Body + '</p></div></div></div>';
+                        } else {
+                            var newHtml = '<div class="row blog-comments margin-bottom-30"><div class="col-sm-2 sm-margin-bottom-40"><img src="' + value.ImageUrl + '" alt=""></div><div class="col-sm-10"><div class="comments-itself-light"><h4><a href="../../Account/Profile?username=' + value.Author + '">' + value.Author + '</a></h4><p>' + value.Body + '</p></div></div></div>';
+                        }
+                        $("#commentSection").html($("#commentSection").html() + newHtml);
+
+                    });
+
+                    if (data.length == 0) {
+                        $("#commentSection").html("<p>There are no comments here yet.</p>");
+                    }
+                })
+                .fail(function() {
+                    toastr.error("Failed to load comments.");
+                })
+                .always(function() {
+                    $("#commentsLoading").addClass("hidden");
+                });
+        }
+
+        $(document).ready(function() {
+            loadComments();
+
+            $("#commentSubmit").click(function() {
+                var body = $("#commentMessage").val();
+                var id = @Model.CompositionId;
+
+                if (body == "") {
+                    toastr.error("You have to input something into the comment box.");
+                } else {
+                    $.post("../addcomment", { body: body, id: id })
+                     .done(function(result) {
+                         $("#commentMessage").val("");
+                         loadComments();
+                     })
+                     .fail(function() {
+                         toastr.error("Failed to post comment.");
+                     }); 
+                }
+            })
+        })
+    </script>
+}

@@ -1,0 +1,253 @@
+﻿@using CodeKicker.BBCode
+@model Athenaeum.ViewModels.Character.CharacterEditViewModel
+@{
+    ViewBag.Title = "Edit Character";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Edit Character - @Model.Name</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Characters", "Index", "Character")</li>
+            <li>@Html.ActionLink(Model.Name, "Details", "Character", new {id = Model.CharacterId}, null)</li>
+            <li class="active">Edit Character</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostEdit", "Character", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="id" value="@Model.CharacterId"/>
+        <fieldset class="no-padding">
+            <label>Name <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="name" id="name" pattern=".{2,12}" placeholder="Exactly as it appears in-game" value="@Model.Name" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Full Name</label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="fullname" value="@Model.FullName" id="fullname" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <label>Class <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="charClass" required>
+                            @if (Model.Class == "Death Knight")
+                            {
+                                <option value="Death Knight" selected>Death Knight</option>
+                            }
+                            else
+                            {
+                                <option value="Death Knight">Death Knight</option>
+                            }
+                            @if (Model.Class == "Druid")
+                            {
+                                <option value="Druid" selected>Druid</option>
+                            }
+                            else
+                            {
+                                <option value="Druid">Druid</option>
+                            }
+                            @if (Model.Class == "Hunter")
+                            {
+                                <option value="Hunter" selected>Hunter</option>
+                            }
+                            else
+                            {
+                                <option value="Hunter">Hunter</option>
+                            }
+                            @if (Model.Class == "Mage")
+                            {
+                                <option value="Mage" selected>Mage</option>
+                            }
+                            else
+                            {
+                                <option value="Mage">Mage</option>
+                            }
+                            @if (Model.Class == "Monk")
+                            {
+                                <option value="Monk" selected>Monk</option>
+                            }
+                            else
+                            {
+                                <option value="Monk">Monk</option>
+                            }
+                            @if (Model.Class == "Monk")
+                            {
+                                <option value="Paladin" selected>Paladin</option>
+                            }
+                            else
+                            {
+                                <option value="Paladin">Paladin</option>
+                            }
+                            @if (Model.Class == "Priest")
+                            {
+                                <option value="Priest" selected>Priest</option>
+                            }
+                            else
+                            {
+                                <option value="Priest">Priest</option>
+                            }
+                            @if (Model.Class == "Rogue")
+                            {
+                                <option value="Rogue" selected>Rogue</option>
+                            }
+                            else
+                            {
+                                <option value="Rogue">Rogue</option>
+                            }
+                            @if (Model.Class == "Shaman")
+                            {
+                                <option value="Shaman" selected>Shaman</option>
+                            }
+                            else
+                            {
+                                <option value="Shaman">Shaman</option>
+                            }
+                            @if (Model.Class == "Warlock")
+                            {
+                                <option value="Warlock" selected>Warlock</option>
+                            }
+                            else
+                            {
+                                <option value="Warlock">Warlock</option>
+                            }
+                            @if (Model.Class == "Warrior")
+                            {
+                                <option value="Warrior" selected>Warrior</option>
+                            }
+                            else
+                            {
+                                <option value="Warrior">Warrior</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <label>Status <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="status" required>
+                            @if (Model.Status == "Inactive")
+                            {
+                                <option value="Active">Active</option>
+                                <option value="Inactive" selected>Inactive</option>
+                            }
+                            else
+                            {
+                                <option value="Active" selected>Active</option>
+                                <option value="Inactive">Inactive</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <label>Guild</label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="guild" value="@Model.Guild" class="form-control ">
+                    </div>
+                </div>
+            </div>
+
+            <label>Introduction</label>
+            <small class="pull-right" id="introductionCount"></small>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" maxlength="1000" name="introduction" id="introduction" class="form-control">@Model.Introduction.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>Personality</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="personality" id="personality" class="form-control">@Model.Personality.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>Appearance</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="appearance" id="appearance" class="form-control">@Model.Appearance.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>History</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="history" id="history" class="form-control">@Model.History.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>Image</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div class="input input-file">
+                        <div class="button">
+                            <input type="file" name="image" onchange="document.getElementById('urlHolder').value = this.value" />
+                            Browse
+                        </div>
+                        <input type="text" id="urlHolder" placeholder="Image will be resized to be 400x300" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" id="submitBtn" class="btn-u">Edit Character</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Updating Character...");
+                $("#submitBtn").type = "button";
+            });
+
+            $("#introduction").on("change paste keyup", function () {
+                var text = $(this).val();
+                $("#introductionCount").html(text.length + " / 1000");
+            });
+
+            //set it as the page loads so that we're comparing apples to apples
+            var text = $("#introduction").val();
+            $("#introductionCount").html(text.length + " / 1000");
+        })
+    </script>
+}

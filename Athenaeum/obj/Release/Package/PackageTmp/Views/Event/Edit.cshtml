@@ -1,0 +1,141 @@
+﻿@using CodeKicker.BBCode
+@model Athenaeum.Models.Event
+@{
+    ViewBag.Title = "Edit Event";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Create Event</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Upcoming Events", "Index", "Event")</li>
+            <li>@Html.ActionLink(Model.Title, "Details", "Event", new {id = Model.EventId}, null)</li>
+            <li class="active">Edit Event</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostEdit", "Event", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="id" value="@Model.EventId" />
+        <label>Title <span class="color-red">*</span></label>
+        <div class="row sky-space-20">
+            <div class="col-md-7 col-md-offset-0">
+                <div>
+                    <input type="text" name="title" id="title" value="@Model.Title" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <label>Faction <span class="color-red">*</span></label>
+        <div class="row sky-space-20">
+            <div class="col-md-7 col-md-offset-0">
+                <div>
+                    <select class="form-control" name="faction" required>
+                        @if (Model.Faction == "Alliance")
+                        {
+                            <option value="Alliance" selected>Alliance</option>
+                        }
+                        else
+                        {
+                            <option value="Alliance">Alliance</option>
+                        }
+                        @if (Model.Faction == "Horde")
+                        {
+                            <option value="Horde" selected>Horde</option>
+                        }
+                        else
+                        {
+                            <option value="Horde">Horde</option>
+                        }
+                        @if (Model.Faction == "Both")
+                        {
+                            <option value="Both" selected>Both</option>
+                        }
+                        else
+                        {
+                            <option value="Both">Both</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <label>Introduction</label>
+        <div class="row sky-space-20">
+            <div class="col-md-11 col-md-offset-0">
+                <div>
+                    <textarea rows="8" maxlength="200" name="introduction" id="introduction" class="form-control">@Model.Introduction</textarea>
+                </div>
+            </div>
+        </div>
+
+        <label>Description</label>
+        <div class="row sky-space-20">
+            <div class="col-md-11 col-md-offset-0">
+                <div>
+                    <textarea rows="8" name="description" id="description" class="form-control">@Model.Description.Replace("[br]", "\n")</textarea>
+                </div>
+            </div>
+        </div>
+
+        <label>Image</label>
+        <div class="row sky-space-20">
+            <div class="col-md-11 col-md-offset-0">
+                <div class="input input-file">
+                    <div class="button">
+                        <input type="file" name="image" onchange="document.getElementById('urlHolder').value = this.value" />
+                        Browse
+                    </div>
+                    <input type="text" id="urlHolder" placeholder="Image will be resized to be 800x160" readonly />
+                </div>
+            </div>
+        </div>
+
+        <label>Start Date <span class="color-red">*</span></label>
+        <div class="row sky-space-20">
+            <div class="col-md-7 col-md-offset-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" name="start" value="@Model.StartDate.ToString("MM/dd/yyyy")" required />
+                    
+                </div>
+            </div>
+        </div>
+
+        <label>End Date <span class="color-red">*</span></label>
+        <div class="row sky-space-20">
+            <div class="col-md-7 col-md-offset-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="end" placeholder="mm/dd/yyyy" value="@Model.EndDate.ToString("MM/dd/yyyy")" required />
+                    
+                </div>
+            </div>
+        </div>
+
+        <p><button type="submit" id="submitBtn" class="btn-u">Edit Event</button></p>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Updating Composition...");
+                $("#submitBtn").type = "button";
+            });
+        })
+    </script>
+}

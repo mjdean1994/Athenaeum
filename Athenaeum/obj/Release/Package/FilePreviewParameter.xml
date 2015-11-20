@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="wymrestathenaeum" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\mdean\\Documents\\Athenaeum\\Athenaeum\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\mdean\\Documents\\Athenaeum\\Athenaeum\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=tcp:au5kancghq.database.windows.net,1433;Database=athenaeum;User ID=athenaeum@au5kancghq;Password=MmDea1N11;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\mdean\\Documents\\Athenaeum\\Athenaeum\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="StorageConnectionString-Web.config Connection String" description="" value="DefaultEndpointsProtocol=https;AccountName=athenaeum;AccountKey=/pIHnvoUY9vKD31iuEcA5xlSVmt9k++iGcSf30xKQYwOOmd2U25zRdIorUi1GKdYhKEZiGYuWr6EuCZFco3Wzg==" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\mdean\\Documents\\Athenaeum\\Athenaeum\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='StorageConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

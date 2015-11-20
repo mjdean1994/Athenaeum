@@ -1,0 +1,254 @@
+﻿@using CodeKicker.BBCode
+@using Microsoft.AspNet.Identity
+@model Athenaeum.Models.ApplicationUser
+@{
+    ViewBag.Title = "Profile";
+}
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            @Model.UserName
+            @if (!string.IsNullOrEmpty(Model.Title))
+            {
+                <small>@Model.Title</small>
+
+            }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">@Model.UserName</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<!--=== Profile ===-->
+<div class="container content profile">
+    <div class="row">
+        <!--Left Sidebar-->
+        <div class="col-md-3 md-margin-bottom-40">
+            <img class="img-responsive profile-img margin-bottom-20" src="@Model.ImageUrl" alt="">
+
+            <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                <li class="list-group-item active">
+                    <a href="#about-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-bar-chart-o"></i> About</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#character-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-user"></i> Characters</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#guild-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-users"></i> Guilds</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#composition-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-pencil"></i> Compositions</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#picture-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-image"></i> Pictures</a>
+                </li>
+                @if (User.Identity.GetUserName() == Model.UserName)
+                {
+                    <li class="list-group-item">
+                        <a href="#edit-profile-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-edit"></i> Edit Profile</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#change-password-tab" class="list-group-tab" data-toggle="tab"><i class="fa fa-cog"></i> Change Password</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!--End Left Sidebar-->
+        <!-- Profile Content -->
+        <div class="col-md-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="about-tab">
+                    <div class="headline"><h2>About Me</h2></div>
+                    <p>@Html.Raw(BBCode.ToHtml(Model.Introduction))</p>
+                    @if (!string.IsNullOrEmpty(Model.BattleTag))
+                    {
+                        <h3><strong>BattleTag:</strong> @Model.BattleTag</h3>
+                    }
+                </div>
+                <div class="tab-pane" id="character-tab">
+                    <div class="headline">
+                        <h2>
+                            Characters
+                            @if (User.Identity.GetUserName() == Model.UserName)
+                            {
+                                <small><a href="@Url.Action("Create", "Character")"><i class="fa fa-plus-circle"></i></a></small>
+                            }
+                        </h2>
+                    </div>
+                    
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var character in Model.Characters)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(character.Name, "Details", "Character", new {id = character.CharacterId}, new {@class = "force-color"})</td>
+                                    <td>@character.FullName</td>
+                                    <td class="text-right">@character.Race @character.Class</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="guild-tab">
+                    <div class="headline">
+                        <h2>Guilds
+                        @if (User.Identity.GetUserName() == Model.UserName)
+                            {
+                                <small><a href="@Url.Action("Create", "Guild")"><i class="fa fa-plus-circle"></i></a></small>
+                            }</h2>
+                    </div>
+
+                    <table class="table table-striped">
+                        <tbody>
+                        @foreach (var guild in Model.Guilds)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(guild.Name, "Details", "Guild", new { id = guild.GuildId }, new { @class = "force-color" })</td>
+                                <td class="text-right">@guild.Faction</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="composition-tab">
+                    <div class="headline">
+                        <h2>
+                            Compositions
+                            @if (User.Identity.GetUserName() == Model.UserName)
+                            {
+                                <small><a href="@Url.Action("Create", "Composition")"><i class="fa fa-plus-circle"></i></a></small>
+                            }
+                        </h2>
+                    </div>
+
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var comp in Model.Compositions)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(comp.Title, "Details", "Composition", new { id = comp.CompositionId }, new { @class = "force-color" })</td>
+                                    <td class="text-right">@comp.Type</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="picture-tab">
+                    <div class="headline">
+                        <h2>
+                            Pictures
+                            @if (User.Identity.GetUserName() == Model.UserName)
+                            {
+                                <small><a href="@Url.Action("Create", "Character")"><i class="fa fa-plus-circle"></i></a></small>
+                            }
+                        </h2>
+                    </div>
+                    <div id="grid-container" class="row margin-top-20">
+                        <div class="team-v5">
+                            @foreach (var picture in Model.Pictures)
+                            {
+                                <div class="col-sm-3">
+                                    <a href="@Url.Content("~/Gallery/Details/" + picture.PictureId)">
+                                        <div class="team-img">
+
+                                            <img class="img-responsive" src="@picture.ImageUrl" alt="">
+                                            <div class="team-hover text-center">
+                                                <h3>@picture.Title</h3>
+
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="event-tab">
+                    <div class="headline">
+                        <h2>Events</h2>
+                    </div>
+                    @if (User.Identity.GetUserName() == Model.UserName)
+                    {
+                        @Html.ActionLink("Create Event", "Create", "Event", null, new { @class = "btn-u btn-u-sm margin-bottom-20" })
+                    }
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var item in Model.Events)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(item.Title, "Details", "Event", new { id = item.EventId }, new { @class = "force-color" })</td>
+                                    <td>@item.Faction</td>
+                                    <td class="text-right">@item.StartDate.ToString("MMMM dd, yyyy")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @if (User.Identity.GetUserName() == Model.UserName)
+                {
+                    <div class="tab-pane" id="edit-profile-tab">
+                        <div class="headline"><h2>Edit Profile</h2></div>
+                        @using (Html.BeginForm("EditProfile", "Account", null, FormMethod.Post, new {@class = "sky-form contact-style", enctype = "multipart/form-data"}))
+                        {
+                            <input type="hidden" name="userId" value="@User.Identity.GetUserId()"/>
+                            
+                            <label>Introduction</label>
+                            <div class="row sky-space-20">
+                                <div class="col-md-11 col-md-offset-0">
+                                    <div>
+                                        <textarea rows="8" name="introduction" id="introduction" class="form-control">@Model.Introduction.Replace("[br]", "\n")</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <label>BattleTag</label>
+                            <div class="row sky-space-20">
+                                <div class="col-md-7 col-md-offset-0">
+                                    <div>
+                                        <input type="text" value="@Model.BattleTag" placeholder="Only enter it here if you want others to see it" name="battletag" id="battletag" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <label>Image</label>
+                            <div class="row sky-space-20">
+                                <div class="col-md-11 col-md-offset-0">
+                                    <div class="input input-file">
+                                        <div class="button">
+                                            <input type="file" name="image" onchange="document.getElementById('urlHolder').value = this.value" />
+                                            Browse
+                                        </div>
+                                        <input type="text" id="urlHolder" placeholder="Image will be resized to be 400x400" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-u">Submit</button>
+                        }
+                    </div>
+                    <div class="tab-pane" id="change-password-tab">
+                        @Html.Action("GetChangePasswordPartial", "Account", new {userId = User.Identity.GetUserId()})
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".list-group-tab").click(function() {
+                $(".list-group-tab").parent.removeClass("active");
+                $(this).parent.addClass("active");
+            });
+        })
+    </script>
+}

@@ -1,0 +1,67 @@
+﻿@model int
+@{
+    ViewBag.Title = "Create New Thread";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Forums</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Forums", "Index", "Forum")</li>
+            <li class="active">Create Thread</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container">
+    <div id="previewFrame" class="margin-top-20">
+        
+    </div>
+    @using (Html.BeginForm("PostThread", "Forum", null, FormMethod.Post, new {@class = "sky-form contact-style", enctype = "multipart/form-data"}))
+    {
+        <fieldset class="no-padding">
+            <label>Title <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="title" id="title" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Body <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="body" id="body" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="sectionId" value="@Model"/>
+            <button type="submit" class="btn-u">Submit</button>
+            <button type="button" id="previewButton" class="btn-u">Preview</button>
+        </fieldset>
+    }
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#previewButton").click(function () {
+                var bodyVal = $("#body").val();
+                $.post("/Forum/GrabNewPreview", { body: bodyVal })
+                    .done(function(data) {
+                        $("#previewFrame").html(data);
+                    })
+                    .fail(function() {
+                        toastr.error("Failed to preview post.");
+                    });
+
+            });
+        });
+    </script>
+}

@@ -1,0 +1,59 @@
+﻿@model Athenaeum.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Registration</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Registration</li>
+        </ul>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new {@class = "reg-page", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <div class="reg-header">
+                    <h2>Register a new account</h2>
+                    <p>Already Signed Up? @Html.ActionLink("Login", "Login", "Account") to your account!</p>
+                </div>
+
+                <label>Username <span class="color-red">*</span></label>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control margin-bottom-20" })
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label>Password <span class="color-red">*</span></label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20" })
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Confirm Password <span class="color-red">*</span></label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control margin-bottom-20" })
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-lg-6 checkbox">
+                        <label>
+                            By registers, you agree to the @Html.ActionLink("Terms of Service", "Terms", "Home").
+                        </label>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <button class="btn-u" type="submit">Register</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div><!--/container-->
+<!--=== End Content Part ===-->

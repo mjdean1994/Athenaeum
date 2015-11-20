@@ -1,0 +1,110 @@
+﻿@using CodeKicker.BBCode
+@model Athenaeum.Models.Composition
+@{
+    ViewBag.Title = "Edit Composition";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Edit Composition - @Model.Title</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Compositions", "Index", "Composition")</li>
+            <li>@Html.ActionLink(Model.Title, "Index", "Composition")</li>
+            <li class="active">Edit Composition</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostEdit", "Composition", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="compositionId" value="@Model.CompositionId"/>
+        <fieldset class="no-padding">
+            <label>Title <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="title" id="title" value="@Model.Title" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Category <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="type" required>
+                            @if (Model.Type == "Story")
+                            {
+                                <option value="Story" selected>Story</option>
+                            }
+                            else
+                            {
+                                <option value="Story">Story</option>
+                            }
+                            @if (Model.Type == "Journal")
+                            {
+                                <option value="Journal" selected>Journal</option>
+                            }
+                            else
+                            {
+                                <option value="Journal">Journal</option>
+                            }
+                            @if (Model.Type == "Document")
+                            {
+                                <option value="Document" selected>Document</option>
+                            }
+                            else
+                            {
+                                <option value="Document">Document</option>
+                            }
+                            @if (Model.Type == "Poetry")
+                            {
+                                <option value="Poetry" selected>Poetry</option>
+                            }
+                            else
+                            {
+                                <option value="Poetry">Poetry</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <label>Body</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="body" id="body" class="form-control">@Model.Body.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" id="submitBtn" class="btn-u">Edit Composition</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Updating Composition...");
+                $("#submitBtn").type = "button";
+            });
+        })
+    </script>
+}

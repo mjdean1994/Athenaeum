@@ -1,0 +1,137 @@
+﻿@using CodeKicker.BBCode
+@model Athenaeum.ViewModels.Home.HomeIndexViewModel
+@{
+    ViewBag.Title = "Home";
+}
+
+<!--=== Breadcrumbs v1 ===-->
+<div class="breadcrumbs-v1">
+    <div class="container">
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <h1>&nbsp;</h1>
+    </div>
+</div>
+<!--=== End Breadcrumbs v1 ===-->
+@if (!Request.IsAuthenticated)
+{
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <span>Hey! We'd love for you to join our community!</span>
+                    <p>We always want the Wyrmrest Accord roleplaying community to grow and come closer together and we strongly encourage you to join us! Everything on the site is free with no pressure or ads in sight! What's stopping you from registering?</p>
+                </div>
+                <div class="col-md-3 btn-buy">
+                    <a href="@Url.Content("~/Account/Register")" class="btn-u btn-u-lg"><i class="fa fa-check"></i> Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+}
+
+
+<!--=== Blog Posts ===-->
+<div class="container content-md">
+    <div class="row">
+        <!-- Blog All Posts -->
+        <div class="col-md-9">
+            @foreach (var article in Model.Articles)
+            {
+                <!-- News v3 -->
+                <div class="row margin-bottom-20">
+                    <div class="col-sm-5 sm-margin-bottom-20">
+                        <img class="img-responsive" src="@article.ImageUrl" alt="">
+                    </div>
+                    <div class="col-sm-7 news-v3">
+                        <div class="news-v3-in-sm no-padding">
+                            <ul class="list-inline posted-info">
+                                <li>By @Html.ActionLink(article.Author.UserName, "Profile", "Account", new { username = article.Author.UserName }, null)</li>
+                                <li>@article.Category.Description</li>
+                                <li>@article.PostedDate.ToString("MMMM dd, yyyy")</li>
+                            </ul>
+                            <h2>@Html.ActionLink(article.Title, "Details", "News", new { id = article.NewsArticleId }, null)</h2>
+                            @if (article.Body.Length > 200)
+                            {
+                                <p>@Html.Raw(BBCode.ToHtml(article.Body.Substring(0, 200)))...</p>
+                            }
+                            else
+                            {
+                                <p>@Html.Raw(BBCode.ToHtml(article.Body))</p>
+                            }
+                            <ul class="post-shares">
+                                <li>
+                                    <a href="#">
+                                        <i class="rounded-x fa fa-comments"></i>
+                                        <span>@article.NumberOfComments</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--/end row-->
+                <!-- End News v3 -->
+                <div class="clearfix margin-bottom-20"><hr>
+                </div> 
+            }
+            @Html.ActionLink("News Archive", "Archive", "News", null, new {@class = "btn-u btn-u-sm margin-bottom-20"})
+            <!-- End Pager v3 -->
+        </div>
+        <!-- End Blog All Posts -->
+        <!-- Blog Sidebar -->
+        <div class="col-md-3">
+            <div class="headline-v2 bg-color-light"><h2>Upcoming Events</h2></div>
+            
+            <!-- Trending -->
+            <ul class="list-unstyled blog-trending margin-bottom-50">
+                @if (Model.Events.Count == 0)
+                {
+                    <li>
+                        No Upcoming Events
+                    </li>
+                }
+                @foreach (var item in Model.Events)
+                {
+                    <li>
+                        <h3>@Html.ActionLink(item.Title, "Details", "Event", new {id = item.EventId}, null)</h3>
+                        <small>@item.StartDate.ToString("MMMM dd, yyyy")</small>
+                    </li>    
+                }
+                
+            </ul>
+            <!-- End Trending -->
+            <div class="headline-v2 bg-color-light"><h2>Latest Threads</h2></div>
+            <!-- Latest Links -->
+            <ul class="list-unstyled blog-trending margin-bottom-50">
+                @foreach (var item in Model.Threads)
+                {
+                    <li>
+                        <h3>
+                            @Html.ActionLink(item.Title, "Thread", "Forum", new {id = item.ForumThreadId}, null)
+                        </h3>
+                        <small>@Html.ActionLink(item.Section.Name, "Section", "Forum", new {id = item.Section.ForumSectionId}, null)</small>
+                    </li>
+                }
+            </ul>
+            <!-- End Latest Links -->
+            
+            <div class="headline-v2 bg-color-light"><h2>New Pictures</h2></div>
+            <!-- Photostream -->
+            <ul class="list-inline blog-photostream margin-bottom-50">
+                @foreach(var picture in Model.Pictures)
+                {
+                    <li>
+                        <a href="@Url.Content("~/Gallery/Details/" + picture.PictureId)" rel="gallery" class="fancybox img-hover-v2" title="@picture.Title">
+                            <span><img class="img-responsive" src="@picture.ImageUrl" alt=""></span>
+                        </a>
+                    </li>
+                }
+                
+                
+            </ul>
+            <!-- End Photostream -->
+        </div>
+        <!-- End Blog Sidebar -->
+    </div>
+</div>
+<!--=== End Blog Posts ===-->

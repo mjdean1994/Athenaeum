@@ -1,0 +1,39 @@
+﻿@model List<Athenaeum.Models.ContactMessage>
+@{
+    ViewBag.Title = "Inbox";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Administration Inbox</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Administration Dashboard", "Index", "Admin")</li>
+            <li class="active">Administration Inbox</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="content-sm container">
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <div class="list-group-item">
+                <h3>
+                    @item.Name [<a href="mailto:@item.Email">@item.Email</a>]
+                    <small>
+                        @if (item.AnsweredDate != null)
+                        {
+                            <span class="pull-right">Answered by @item.AnsweredBy.UserName at @item.AnsweredDate.Value.ToString("hh:mm:ss tt | MM/dd/yyyy")</span>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("MarkAsAnswered", new {id = item.ContactMessageId})" class="btn-u pull-right">Mark As Answered</a>
+                        }
+                    </small>
+                </h3>
+                <p>@item.Body</p>
+            </div>
+        }
+    </div>
+</div>

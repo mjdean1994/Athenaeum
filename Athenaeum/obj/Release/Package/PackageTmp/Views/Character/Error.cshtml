@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">404 Error</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Characters", "Index", "Character")</li>
+            <li class="active">404 Error</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<!--=== Content Part ===-->
+<div class="container content">
+    <!--Error Block-->
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="error-v1">
+                <span class="error-v1-title">404</span>
+                <span>@ViewBag.Character doesn't exist on the Athenaeum yet!</span>
+                <p>We'd love for them to join us, though, so we strongly encourage you to go bother them about making a page for their character!</p>
+                @Html.ActionLink("Back to Guilds", "Index", "Guild", new { @class = "btn-u btn-bordered" })
+            </div>
+        </div>
+    </div>
+    <!--End Error Block-->
+</div>
+<!--=== End Content Part ===-->

@@ -1,0 +1,34 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">404 Error</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home","Index", "Home")</li>
+            <li class="active">404 Error</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<!--=== Content Part ===-->
+<div class="container content">
+    <!--Error Block-->
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="error-v1">
+                <span class="error-v1-title">404</span>
+                <span>Page not found.</span>
+                <p>If you think it should be, please let us know!</p>
+                @Html.ActionLink("Back Home", "Index", "Home", new {@class = "btn-u btn-bordered"})
+            </div>
+        </div>
+    </div>
+    <!--End Error Block-->
+</div>
+<!--=== End Content Part ===-->
+

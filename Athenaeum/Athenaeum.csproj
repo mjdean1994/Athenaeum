@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31B103F4-B2B0-480B-A011-40B3687694F0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Athenaeum</RootNamespace>
+    <AssemblyName>Athenaeum</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage">
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CharacterController.cs" />
+    <Compile Include="Controllers\CompositionController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
+    <Compile Include="Controllers\GuildController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505191425247_InitialCreate.cs" />
+    <Compile Include="Migrations\201505191425247_InitialCreate.Designer.cs">
+      <DependentUpon>201505191425247_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505192022221_FkUpdate.cs" />
+    <Compile Include="Migrations\201505192022221_FkUpdate.Designer.cs">
+      <DependentUpon>201505192022221_FkUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505201554295_RelationshipBetweenCommentsAndUsers.cs" />
+    <Compile Include="Migrations\201505201554295_RelationshipBetweenCommentsAndUsers.Designer.cs">
+      <DependentUpon>201505201554295_RelationshipBetweenCommentsAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505201843064_Characters.cs" />
+    <Compile Include="Migrations\201505201843064_Characters.Designer.cs">
+      <DependentUpon>201505201843064_Characters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505202009289_CharacterOwner.cs" />
+    <Compile Include="Migrations\201505202009289_CharacterOwner.Designer.cs">
+      <DependentUpon>201505202009289_CharacterOwner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505202051053_UnlinkGuild.cs" />
+    <Compile Include="Migrations\201505202051053_UnlinkGuild.Designer.cs">
+      <DependentUpon>201505202051053_UnlinkGuild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505221519311_Guilds.cs" />
+    <Compile Include="Migrations\201505221519311_Guilds.Designer.cs">
+      <DependentUpon>201505221519311_Guilds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505222012375_Forums.cs" />
+    <Compile Include="Migrations\201505222012375_Forums.Designer.cs">
+      <DependentUpon>201505222012375_Forums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505222013512_ForumThreadUpdate.cs" />
+    <Compile Include="Migrations\201505222013512_ForumThreadUpdate.Designer.cs">
+      <DependentUpon>201505222013512_ForumThreadUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505222027507_CategorySortOrder.cs" />
+    <Compile Include="Migrations\201505222027507_CategorySortOrder.Designer.cs">
+      <DependentUpon>201505222027507_CategorySortOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505222133325_Section.cs" />
+    <Compile Include="Migrations\201505222133325_Section.Designer.cs">
+      <DependentUpon>201505222133325_Section.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505241638542_Compositions.cs" />
+    <Compile Include="Migrations\201505241638542_Compositions.Designer.cs">
+      <DependentUpon>201505241638542_Compositions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505241822517_AuditComposition.cs" />
+    <Compile Include="Migrations\201505241822517_AuditComposition.Designer.cs">
+      <DependentUpon>201505241822517_AuditComposition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505261800476_Pictures.cs" />
+    <Compile Include="Migrations\201505261800476_Pictures.Designer.cs">
+      <DependentUpon>201505261800476_Pictures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505261927442_CharGuildStatus.cs" />
+    <Compile Include="Migrations\201505261927442_CharGuildStatus.Designer.cs">
+      <DependentUpon>201505261927442_CharGuildStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505262208537_ForumAudit.cs" />
+    <Compile Include="Migrations\201505262208537_ForumAudit.Designer.cs">
+      <DependentUpon>201505262208537_ForumAudit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505262223524_IsLockedPost.cs" />
+    <Compile Include="Migrations\201505262223524_IsLockedPost.Designer.cs">
+      <DependentUpon>201505262223524_IsLockedPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505271601339_Events.cs" />
+    <Compile Include="Migrations\201505271601339_Events.Designer.cs">
+      <DependentUpon>201505271601339_Events.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505291948220_ContactMessages.cs" />
+    <Compile Include="Migrations\201505291948220_ContactMessages.Designer.cs">
+      <DependentUpon>201505291948220_ContactMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ArmoryCharacter.cs" />
+    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentType.cs" />
+    <Compile Include="Models\Composition.cs" />
+    <Compile Include="Models\ContactMessage.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\ForumCategory.cs" />
+    <Compile Include="Models\ForumPost.cs" />
+    <Compile Include="Models\ForumSection.cs" />
+    <Compile Include="Models\ForumThread.cs" />
+    <Compile Include="Models\Guild.cs" />
+    <Compile Include="Models\NewsArticle.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\NewsCategory.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BattleNetApiService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utils\ImageUtilities.cs" />
+    <Compile Include="ViewModels\Admin\AdminIndexViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AdminUsersViewModel.cs" />
+    <Compile Include="ViewModels\Character\CharacterArmoryStatsViewModel.cs" />
+    <Compile Include="ViewModels\Character\CharacterDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Character\CharacterEditViewModel.cs" />
+    <Compile Include="ViewModels\Character\CharacterIndexViewModel.cs" />
+    <Compile Include="ViewModels\Composition\CompositionIndexViewModel.cs" />
+    <Compile Include="ViewModels\Event\EventArchiveViewModel.cs" />
+    <Compile Include="ViewModels\Forum\ThreadViewModel.cs" />
+    <Compile Include="ViewModels\Gallery\GalleryIndexViewModel.cs" />
+    <Compile Include="ViewModels\Guild\GuildDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Guild\GuildEditViewModel.cs" />
+    <Compile Include="ViewModels\Guild\GuildIndexViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomeExploreViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomeIndexViewModel.cs" />
+    <Compile Include="ViewModels\News\NewsArchiveViewModel.cs" />
+    <Compile Include="ViewModels\Search\SearchResultViewModel.cs" />
+    <Compile Include="ViewModels\Shared\CommentViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\red.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\Unify\page_404_error.css" />
+    <Content Include="Content\Unify\app.css" />
+    <Content Include="Content\Unify\blocks.css" />
+    <Content Include="Content\Unify\page_log_reg_v1.css" />
+    <Content Include="Content\Unify\profile.css" />
+    <Content Include="Content\Unify\z-sky-forms-custom.css" />
+    <Content Include="Content\Unify\footer-v1.css" />
+    <Content Include="Content\Unify\header-default.css" />
+    <Content Include="Content\Unify\ie8.css" />
+    <Content Include="Content\Unify\page_contact.css" />
+    <Content Include="Content\Unify\page_misc_sticky_footer.css" />
+    <Content Include="Content\Unify\plugins.css" />
+    <Content Include="Content\Unify\sky-forms-ie8.css" />
+    <Content Include="Content\Unify\sky-forms.css" />
+    <Content Include="Content\Unify\style.css" />
+    <Content Include="Content\blue.css" />
+    <Content Include="Content\Unify\zz-dark.css" />
+    <Content Include="Content\white.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\wyrmrestathenaeum %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\wyrmrestathenaeum.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Character\Index.cshtml" />
+    <Content Include="Views\Character\Details.cshtml" />
+    <Content Include="Views\News\Archive.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Character\Create.cshtml" />
+    <Content Include="Views\Character\Edit.cshtml" />
+    <Content Include="Views\Guild\Index.cshtml" />
+    <Content Include="Views\Guild\Details.cshtml" />
+    <Content Include="Views\Guild\Create.cshtml" />
+    <Content Include="Views\Guild\Error.cshtml" />
+    <Content Include="Views\Guild\Edit.cshtml" />
+    <Content Include="Views\Forum\Index.cshtml" />
+    <Content Include="Views\Forum\Section.cshtml" />
+    <Content Include="Views\Forum\Thread.cshtml" />
+    <Content Include="Views\Forum\CreateThread.cshtml" />
+    <Content Include="Views\Composition\Index.cshtml" />
+    <Content Include="Views\Composition\Details.cshtml" />
+    <Content Include="Views\Composition\Create.cshtml" />
+    <Content Include="Views\Composition\Edit.cshtml" />
+    <Content Include="Views\Gallery\Create.cshtml" />
+    <Content Include="Views\Gallery\Edit.cshtml" />
+    <Content Include="Views\Gallery\Details.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Home\Explore.cshtml" />
+    <Content Include="Views\Forum\EditPost.cshtml" />
+    <Content Include="Views\Forum\_Preview.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Archive.cshtml" />
+    <Content Include="Views\Event\Create.cshtml" />
+    <Content Include="Views\Event\Edit.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Inbox.cshtml" />
+    <Content Include="Views\Character\Error.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505191425247_InitialCreate.resx">
+      <DependentUpon>201505191425247_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505192022221_FkUpdate.resx">
+      <DependentUpon>201505192022221_FkUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201554295_RelationshipBetweenCommentsAndUsers.resx">
+      <DependentUpon>201505201554295_RelationshipBetweenCommentsAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201843064_Characters.resx">
+      <DependentUpon>201505201843064_Characters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505202009289_CharacterOwner.resx">
+      <DependentUpon>201505202009289_CharacterOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505202051053_UnlinkGuild.resx">
+      <DependentUpon>201505202051053_UnlinkGuild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505221519311_Guilds.resx">
+      <DependentUpon>201505221519311_Guilds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505222012375_Forums.resx">
+      <DependentUpon>201505222012375_Forums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505222013512_ForumThreadUpdate.resx">
+      <DependentUpon>201505222013512_ForumThreadUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505222027507_CategorySortOrder.resx">
+      <DependentUpon>201505222027507_CategorySortOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505222133325_Section.resx">
+      <DependentUpon>201505222133325_Section.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241638542_Compositions.resx">
+      <DependentUpon>201505241638542_Compositions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241822517_AuditComposition.resx">
+      <DependentUpon>201505241822517_AuditComposition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505261800476_Pictures.resx">
+      <DependentUpon>201505261800476_Pictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505261927442_CharGuildStatus.resx">
+      <DependentUpon>201505261927442_CharGuildStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505262208537_ForumAudit.resx">
+      <DependentUpon>201505262208537_ForumAudit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505262223524_IsLockedPost.resx">
+      <DependentUpon>201505262223524_IsLockedPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505271601339_Events.resx">
+      <DependentUpon>201505271601339_Events.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505291948220_ContactMessages.resx">
+      <DependentUpon>201505291948220_ContactMessages.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Documents\GitHub\WowDotNetAPI\Explorers\Explorers.csproj">
+      <Project>{2a828141-9ef2-4a8a-8944-b2f2d1775cc9}</Project>
+      <Name>Explorers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeKicker.BBCode\CodeKicker.BBCode.csproj">
+      <Project>{1c8a5fb6-633a-43bd-b1b7-75a0ddc308f5}</Project>
+      <Name>CodeKicker.BBCode</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61593</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58570/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

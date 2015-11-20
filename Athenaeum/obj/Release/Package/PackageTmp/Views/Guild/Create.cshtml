@@ -1,0 +1,129 @@
+﻿@using CodeKicker.BBCode
+
+@{
+    ViewBag.Title = "Create Guild";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Create Guild</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Guilds", "Index", "Guild")</li>
+            <li class="active">Create Guild</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostCreate", "Guild", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <fieldset class="no-padding">
+            <label>Guild Name <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" maxlength="24" required name="name" id="name" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Tagline</label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="tagline" id="tagline" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Faction <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="faction" required>
+                            <option value="Alliance">Alliance</option>
+                            <option value="Horde">Horde</option>
+                            <option value="Neutral">Neutral</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <label>Introduction</label>
+            <small class="pull-right" id="introductionCount"></small>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" maxlength="1000" name="introduction" id="introduction" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>Background</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="background" id="backgroud" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <label>OOC Information</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="ooc" id="ooc" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+          
+            <label>Image</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div class="input input-file">
+                        <div class="button">
+                            <input type="file" name="image" onchange="document.getElementById('urlHolder').value = this.value" />
+                            Browse
+                        </div>
+                        <input type="text" id="urlHolder" placeholder="Image will be resized to be 800x160" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" id="submitBtn" class="btn-u">Create Guild</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Creating Guild...");
+                $("#submitBtn").type = "button";
+            });
+
+            $("#introduction").on("change paste keyup", function () {
+                var text = $(this).val();
+                $("#introductionCount").html(text.length + " / 1000");
+            });
+
+            //set it as the page loads so that we're comparing apples to apples
+            var text = $("#introduction").val();
+            $("#introductionCount").html(text.length + " / 1000");
+        })
+    </script>
+}

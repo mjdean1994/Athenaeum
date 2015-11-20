@@ -1,0 +1,215 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+ <!--<![endif]-->
+<head>
+    <title>@ViewBag.Title | Wyrmrest Roleplay</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://i.imgur.com/9qFLodJ.png">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    @Styles.Render("~/Content/Bootstrap")
+    @Styles.Render("~/Content/FontAwesome")
+    @Styles.Render("~/Content/UnifyStyles")
+    @Styles.Render("~/Content/Toastr")
+    
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/white.css")" id="theme"/>
+    
+    
+    <!-- CSS Customization -->
+    @Styles.Render("~/Content/Custom")
+</head>
+
+<body class="dark">
+    <div class="wrapper">
+        <!--=== Header ===-->
+        <div class="header">
+            <div class="container">
+                <!-- Logo -->
+                <a class="logo" style="max-width:none;" href="@Url.Content("~")">
+                    <h1 style="display:inline-block;" class="navbar-brand">Wyrmrest Roleplay <span class="label label-default">ALPHA</span></h1>
+                </a>
+                <!-- End Logo -->
+                <!-- Topbar -->
+                <div class="topbar">
+                    <ul class="loginbar pull-right">
+                        <li><a href="#" id="changeThemes">Change Themes</a></li>
+                        <li class="topbar-devider"></li>
+                        <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
+                        <li class="topbar-devider"></li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li class="topbar-devider"></li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            if (User.IsInRole("god") || User.IsInRole("admin"))
+                             {
+                                 <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
+                                 <li class="topbar-devider"></li>
+                             }
+                            <li>@Html.ActionLink("My Account", "Profile", "Account", new {username = User.Identity.GetUserName()}, null)</li>
+                            <li class="topbar-devider"></li>
+                            <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Login / Register", "Login", "Account")</li> 
+                        }
+                    </ul>
+                </div>
+                <!-- End Topbar -->
+                <!-- Toggle get grouped for better mobile display -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <!-- End Toggle -->
+            </div><!--/end container-->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+
+                        <!-- Explore Dropdown -->
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                Explore
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Dashboard", "Explore", "Home")</li>
+                                <li>@Html.ActionLink("Characters", "Index", "Character")</li>
+                                <li>@Html.ActionLink("Guilds", "Index", "Guild")</li>
+                                <li>@Html.ActionLink("Compositions", "Index", "Composition")</li>
+                                <li>@Html.ActionLink("Gallery", "Index", "Gallery")</li>
+                            </ul>
+                        </li>
+
+                        <!-- Community Button -->
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                Interact
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Forums", "Index", "Forum")</li>
+                                <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                            </ul>
+                        </li>
+
+                        <!-- Map Button 
+                            <li>
+                                <a href="#">Map</a>
+                            </li>-->
+
+                        <!-- Search Block -->
+                        <li>
+                            <i data-toggle="modal" data-target="#searchModal" class="search fa fa-search search-btn"></i>
+                        </li>
+
+                    </ul>
+                </div><!--/end container-->
+            </div><!--/navbar-collapse-->
+        </div>
+        
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        @using(Html.BeginForm("Submit", "Search", FormMethod.Post))
+                        { 
+                            <div class="input-group">
+                                <input type="text" id="searchQuery" name="query" class="form-control" placeholder="Enter something to search for..."/>
+                                <span class="input-group-btn">
+                                    <button id="searchGo" class="btn-u">Go</button>
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!--=== End Header ===-->
+        @RenderBody()
+        <!--=== Footer Version 1 ===-->
+        <div class="footer-v1 sticky-footer">
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                @DateTime.Now.Year &copy; All Rights Reserved.
+                                @Html.ActionLink("About Us", "About", "Home") | @Html.ActionLink("Terms of Service", "Terms", "Home")
+                            </p>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="col-md-6">
+                            <ul class="footer-socials list-inline">
+                                <li>
+                                    <a href="https://www.facebook.com/wrarp" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/WyrmrestRP" class="tooltips" title="Twitter">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Social Links -->
+                    </div>
+                </div>
+            </div><!--/copyright-->
+        </div>
+        <!--=== End Footer Version 1 ===-->
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Unify")
+    @Scripts.Render("~/bundles/Toastr")
+    <script>
+        function loadTheme() {
+            if (localStorage.getItem("theme") != "blue" && localStorage.getItem("theme") != "red") {
+                localStorage.setItem("theme", "blue");
+            }
+
+            if (localStorage.getItem("theme") == "red") {
+                $("#theme").attr("href", '@Url.Content("~/Content/red.css")');
+            } else {
+                $("#theme").attr("href", '@Url.Content("~/Content/blue.css")');
+            }
+
+        }
+
+        $(document).ready(function() {
+            $("#changeThemes").click(function() {
+                if (localStorage.getItem("theme") == "blue") {
+                    localStorage.setItem("theme", "red");
+                } else {
+                    localStorage.setItem("theme", "blue");
+                }
+
+                loadTheme();
+            });
+        });
+
+        loadTheme();
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

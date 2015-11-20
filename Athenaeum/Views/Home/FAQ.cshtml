@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "FAQ";
+}
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">FAQs</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">FAQ</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<!--=== Content Part ===-->
+<div class="container content">
+    <div class="row">
+        <div class="col-md-9">
+            <!-- General Questions -->
+            <div class="headline"><h2>Frequent Questions</h2></div>
+            <div class="panel-group acc-v1 margin-bottom-40" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                How can I change my character's race or my guild's faction?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            We purposefully didn't program those features onto the Edit page. Generally speaking, that won't happen in-character. There's some cases in which, yes, it could, but we've decided that you should rather just create a new guild or character to handle those rare cases. If it's a big deal, just send us note with the @Html.ActionLink("Contact Form", "Contact", "Home") and we'll take care of it for you!
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                My character is a hybrid (half of one race, half of another, or something to that effect). How can I appropriately select their race if I only get one choice?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            We may eventually develop a way to do something like that, but we wanted to have a standardized way to categorize races and as such, a text box was out of the question. We recommend that you select whichever race your character resembles more. If it's a huge deal, contact us, and we'll make the change in the database for your character! 
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                How can I change the owner of my guild? I'm not the leader anymore!
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            We purposefully made it harder to change the owner of a guild for additional protection. Simply shoot us a note and we'll take care of the rest!
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                I've seen some people with really cool styling in their profiles! How do I do that?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            The website supports a form of BBCode integration in some places. You can read about it on our Miscellaneous Forum!
+                        </div>
+                    </div>
+                </div>
+            </div><!--/acc-v1-->
+            <!-- End General Questions -->
+            <!-- Other Questions -->
+            <div class="headline"><h2>Other Questions</h2></div>
+            <div class="panel-group acc-v1" id="accordion-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-One">
+                                Why did you waste your time making this?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-One" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                We're all strong believers in a sense of community on the game. We didn't really like that people just stuck to themselves, so we tried to fix it with a website!
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-Two">
+                                Dragonkin, Ogres, and the like aren't playable races! Why did you include them on the Character creation screen?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-Two" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            We're striving to form an open-minded, hate-free community. That means including everyone, even if we don't necessarily agree with how they're doing things. We welcome roleplayers of all opinions, skill levels, and interests, and as such, strive to make sure they have the resources they need to flesh out their character appropriately. If you don't see your character's race in the dropdown menu, let us know!
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-Three">
+                                This is so cool! I want to help out...can I?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-Three" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            We certainly could use some volunteers to help with things like writing News stories or moderating things, as well as maybe someone who knows how to graphic design. If you're interested, use the Contact page to shoot us a note and we'll start a conversation. You should keep in mind that you're probably not going to get paid, though...either in money or in gold.
+                        </div>
+                    </div>
+                </div>
+            </div><!--/acc-v1-->
+            <!-- End Other Questions -->
+        </div><!--/col-md-9-->
+
+        <div class="col-md-3">
+            <!-- Contacts -->
+            <div class="headline"><h2>Contact</h2></div>
+            <p>Still can't figure it out? Head over to our @Html.ActionLink("Contact Page", "Contact", "Home") and ask us a question there!</p>
+            <!-- End Contacts -->
+        </div><!--/col-md-3-->
+    </div><!--/row-->
+</div><!--/container-->
+<!--=== End Content Part ===-->
+

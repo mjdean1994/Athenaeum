@@ -1,0 +1,82 @@
+﻿@using Athenaeum.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@model Athenaeum.ViewModels.Admin.AdminUsersViewModel
+@{
+    ViewBag.Title = "User Administration";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">User Administration</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Administration Dashboard", "Index", "Admin")</li>
+            <li class="active">User Administration</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+<div class="content-sm container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Title</th>
+                <th>Role</th>
+                <th><!--Empty--></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <input type="hidden" class="userId" value="@item.Id"/>
+                    <td><h5>@item.UserName</h5></td>
+                    <td class="userTitle"><input class="form-control userTitle" type="text" value="@item.Title" name="userTitle"/></td>
+                    <td class="userRole">
+                        <select class="form-control userRole" name="role">
+                            @foreach (var role in Model.Roles)
+                            {
+                                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>());
+                                if (userManager.IsInRole(item.Id, role.Name))
+                                {
+                                    <option selected value="@role.Id">@role.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@role.Id">@role.Name</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td class="text-right">
+                        <a href="#" class="btn-u btn-u-default saveRow"><i class="fa fa-save"></i></a>
+                    </td>
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".saveRow").click(function () {
+                var userId = $(this).parent().parent().children(".userId").val();
+                var userTitle = $(this).parent().parent().children(".userTitle").children(".userTitle").val();
+                var userRole = $(this).parent().parent().children(".userRole").children(".userRole").val();
+
+                $.post("SaveUser?userId=" + userId + "&userTitle=" + userTitle + "&roleId=" + userRole)
+                    .done(function(data) {
+                        toastr.success("Successfully updated the user.");
+                    })
+                    .fail(function() {
+                        toastr.error("Failed to update the user.");
+                    });
+
+            });
+        })
+    </script>
+}

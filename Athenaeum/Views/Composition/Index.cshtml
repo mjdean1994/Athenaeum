@@ -1,0 +1,68 @@
+﻿@model Athenaeum.ViewModels.Composition.CompositionIndexViewModel
+@{
+    ViewBag.Title = "Compositions";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            Compositions
+            @if (Request.IsAuthenticated)
+            {
+                <small><a href="@Url.Action("Create", "Composition")"><i class="fa fa-plus-circle"></i></a></small>
+            }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li class="active">Compositions</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    
+    <table class="table table-striped">
+        <tbody>
+            @foreach (var composition in Model.Compositions)
+            {
+                <tr>
+                    @if (composition.IsFeatured)
+                    {
+                        <td><i class="fa fa-star color-yellow" title="Featured Composition"></i></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    <td>@Html.ActionLink(composition.Title, "Details", "Composition", new {id = composition.CompositionId}, null)</td>
+                    <td>@Html.ActionLink(composition.Author.UserName, "Profile", "Account", new {username = composition.Author.UserName}, null)</td>
+                    <td class="text-right">@composition.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <ul class="pager pager-v3 pager-md no-margin-bottom">
+        @if (Model.CurrentPage <= 1)
+        {
+            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
+        }
+        else
+        {
+            <li class="previous"><a href="@Url.Action("Index", new {pageNumber = Model.CurrentPage - 1})">&larr; Newer</a></li>
+        }
+
+        <li class="page-amount">@Model.CurrentPage of @Model.LastPage</li>
+
+        @if (Model.CurrentPage >= Model.LastPage)
+        {
+            <li class="next disabled"><a href="#">Older &rarr;</a></li>
+        }
+        else
+        {
+            <li class="next"><a href="@Url.Action("Index", new { pageNumber = Model.CurrentPage + 1 })">Older &rarr;</a></li>
+        }
+
+    </ul>
+</div>

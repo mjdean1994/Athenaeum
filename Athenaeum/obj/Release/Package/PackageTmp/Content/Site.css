@@ -1,0 +1,31 @@
+﻿.blog-comments .comments-itself-light {
+  background: #212121;
+  padding: 20px 30px;
+  position: relative;
+}
+
+.blog-comments .comments-itself-light:before {
+  width: 0;
+  height: 0;
+  top: 20px;
+  left: -17px;
+  content: " ";
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 17px 15px 0;
+  border-color: transparent #212121 transparent transparent;
+}
+
+.blog-comments .comments-itself-light h3 {
+  margin: 0 0 10px;
+}
+
+.blog-comments .comments-itself-light span {
+  color: #212121;
+  float: right;
+  font-size: 13px;
+}
+
+.blog-comments .comments-itself-light p {
+  color: #212121;
+}

@@ -1,0 +1,80 @@
+﻿@using CodeKicker.BBCode
+
+@{
+    ViewBag.Title = "Create Composition";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Create Composition</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li>@Html.ActionLink("Compositions", "Index", "Composition")</li>
+            <li class="active">Create Composition</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostCreate", "Composition", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <fieldset class="no-padding">
+            <label>Title <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="title" id="title" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+            <label>Category <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="type" required>
+                            <option value="Story">Story</option>
+                            <option value="Journal">Journal</option>
+                            <option value="Document">Document</option>
+                            <option value="Poetry">Poetry</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <label>Body</label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" name="body" id="body" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" id="submitBtn" class="btn-u">Create Composition</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function () {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Creating Composition...");
+                $("#submitBtn").type = "button";
+            });
+        })
+    </script>
+}

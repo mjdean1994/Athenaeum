@@ -1,0 +1,143 @@
+﻿@using CodeKicker.BBCode
+@using Microsoft.AspNet.Identity
+@using Microsoft.Owin.Security.OAuth
+@model Athenaeum.ViewModels.Forum.ThreadViewModel
+@{
+    ViewBag.Title = Model.Thread.Title;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">@Model.Thread.Title
+        @if (Model.Thread.IsLocked)
+        {
+            <small> <i class="fa fa-lock"></i></small>
+        }
+        @if (Model.Thread.IsSticky)
+        {
+            <small> <i class="fa fa-thumb-tack"></i></small>
+        }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Forums", "Index", "Forum")</li>
+            <li>@Html.ActionLink(Model.Section.Name, "Section", "Forum", new {id = Model.Section.ForumSectionId}, null)</li>
+            <li class="active">@Model.Thread.Title</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+@if (User.IsInRole("moderator") || User.IsInRole("admin"))
+{
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Forum Thread Administration</span>
+                    <p>This is an Admin-only feature. If you believe you are seeing this section in error, please contact us immediately so that we can resolve the problem.</p>
+                </div>
+                <div class="col-md-6 text-center btn-buy">
+                    @Html.ActionLink("Toggle Lock", "LockToggle", "Forum", new {id = Model.Thread.ForumThreadId}, new {@class = "btn-u btn-u-lg"})
+                </div>
+                <div class="col-md-6 text-center btn-buy">
+                    @Html.ActionLink("Toggle Sticky", "StickyToggle", "Forum", new { id = Model.Thread.ForumThreadId }, new { @class = "btn-u btn-u-lg" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container content-sm">
+    <div class="list-group">
+        @foreach (var post in Model.Posts)
+        {
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img class="img-responsive" src="@post.Owner.ImageUrl"/>
+                        <h3>@Html.ActionLink(post.Owner.UserName, "Profile", "Account", new { username = post.Owner.UserName }, null)
+                        @if (!string.IsNullOrEmpty(post.Owner.Title))
+                        {
+                            <br/><small>@post.Owner.Title</small>
+                        }
+                        </h3>
+                    </div>
+                    <div class="col-xs-10">
+                        <div>
+                            <span class="pull-left">
+                                @if ((User.Identity.GetUserName() == post.Owner.UserName && !post.IsLocked) || User.IsInRole("moderator") || User.IsInRole("god"))
+                                {
+                                    @Html.ActionLink("Edit Post", "EditPost", "Forum", new { id = post.ForumPostId }, null)
+                                }
+                                @if (User.IsInRole("moderator") || User.IsInRole("god"))
+                                {
+                                    <span> | </span>@Html.ActionLink("Soft Delete", "SoftDelete", "Forum", new {id = post.ForumPostId}, null)
+                                    <span> | </span>@Html.ActionLink("Hard Delete", "HardDelete", "Forum", new { id = post.ForumPostId }, null)
+                                }
+                            </span>
+                            <span class="pull-right">
+                                @if (post.IsEdited)
+                                {
+                                    <i class="fa fa-pencil" title="This post has been edited"></i>
+                                }
+                                @post.PostedDate.ToString("hh:mm:ss tt | MMMM dd, yyyy")
+                            </span>
+                        </div>
+                        <div class="clearfix margin-bottom-10"></div>
+                        @Html.Raw(BBCode.ToHtml(post.Body))
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+        @if (Request.IsAuthenticated && !Model.Thread.IsLocked)
+        {
+            using (Html.BeginForm("CreatePost", "Forum", null, FormMethod.Post, new {@class = "sky-form comment-style", enctype = "multipart/form-data"}))
+            {
+                <h3 class="margin-top-20">Reply to Thread</h3>
+                <input type="hidden" name="threadId" value="@Model.Thread.ForumThreadId"/>
+                <fieldset class="no-padding">
+                    <div class="row sky-space-20 margin-bottom-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            <div>
+                                <textarea rows="8" name="body" id="body" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><input type="submit" value="Submit" class="btn-u" /></p>
+                </fieldset>
+            }
+        }
+        else if (Model.Thread.IsLocked)
+        {
+            <h3 class="margin-top-20">You Can't Reply to a Locked Thread</h3>
+            <fieldset class="no-padding">
+                <div class="row sky-space-20 margin-bottom-20">
+                    <div class="col-md-7 col-md-offset-0">
+                        <div>
+                            <textarea rows="8" name="body" id="body" readonly class="form-control disabled"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="button" value="Submit" class="btn-u disabled" />
+            </fieldset>
+        }
+        else
+        {
+            <h3 class="margin-top-20">@Html.ActionLink("Login", "Login", "Account") to Reply</h3>
+            <fieldset class="no-padding">
+                <div class="row sky-space-20 margin-bottom-20">
+                    <div class="col-md-7 col-md-offset-0">
+                        <div>
+                            <textarea rows="8" name="body" id="body" readonly class="form-control disabled"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="button" value="Submit" class="btn-u disabled" />
+            </fieldset>
+        }
+</div>

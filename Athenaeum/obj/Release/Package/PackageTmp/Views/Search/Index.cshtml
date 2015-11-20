@@ -1,0 +1,193 @@
+﻿@model Athenaeum.ViewModels.Search.SearchResultViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">About Us</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">Search</li>
+        </ul>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @using (Html.BeginForm("Submit", "Search", FormMethod.Post))
+    {
+        <div class="input-group">
+            <input type="text" id="searchQuery2" name="query" class="form-control" placeholder="Enter something to search for..." />
+            <span class="input-group-btn">
+                <button id="searchGo" class="btn-u">Go</button>
+            </span>
+        </div>
+    }
+    
+    <hr/>
+    <div class="headline"><h3>Search Results</h3></div>
+    <div class="row">
+        <div class="col-xs-2">
+            <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+                <li class="list-group-item active">
+                    <a href="#character-tab" data-toggle="tab">Characters <span class="pull-right">@Model.Characters.Count</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#guild-tab" data-toggle="tab">Guilds <span class="pull-right">@Model.Guilds.Count</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#composition-tab" data-toggle="tab">Compositions <span class="pull-right">@Model.Compositions.Count</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#picture-tab" data-toggle="tab">Pictures <span class="pull-right">@Model.Pictures.Count</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#event-tab" data-toggle="tab">Events <span class="pull-right">@Model.Events.Count</span></a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#thread-tab" data-toggle="tab">Forum Threads <span class="pull-right">@Model.Threads.Count</span></a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-xs-10">
+            <div class="tab-content">
+                <div class="tab-pane active" id="character-tab">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var character in Model.Characters)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(character.Name, "Details", "Character", new { id = character.CharacterId }, new { @class = "force-color" })</td>
+                                    <td>@character.FullName</td>
+                                    <td class="text-right">@character.Race @character.Class</td>
+                                </tr>
+                            }
+                            @if (Model.Characters.Count == 0)
+                            {
+                                <tr>
+                                    <td>No character results.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane" id="guild-tab">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var guild in Model.Guilds)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(guild.Name, "Details", "Guild", new { id = guild.GuildId }, new { @class = "force-color" })</td>
+                                    <td class="text-right">@guild.Faction</td>
+                                </tr>
+                            }
+                            @if (Model.Guilds.Count == 0)
+                            {
+                                <tr>
+                                    <td>No guild results.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="composition-tab">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var comp in Model.Compositions)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(comp.Title, "Details", "Composition", new { id = comp.CompositionId }, new { @class = "force-color" })</td>
+                                    <td class="text-right">@comp.Type</td>
+                                </tr>
+                            }
+                            @if (Model.Compositions.Count == 0)
+                            {
+                                <tr>
+                                    <td>No composition results.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane" id="picture-tab">
+                    <div class="team-v5">
+                        @foreach (var picture in Model.Pictures)
+                        {
+                            <div class="col-sm-3">
+                                <div class="team-img">
+                                    <a href="@Url.Content("~/Gallery/Details/" + picture.PictureId)">
+                                        <img class="img-responsive" src="@picture.ImageUrl" alt="">
+                                        <div class="team-hover text-center">
+                                            <h3>@picture.Title</h3>
+
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        @if (Model.Pictures.Count == 0)
+                        {
+                            <p>No picture results.</p>
+                        }
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="event-tab">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var item in Model.Events)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(item.Title, "Details", "Event", new { id = item.EventId }, new { @class = "force-color" })</td>
+                                    <td>@item.Faction</td>
+                                    <td class="text-right">@item.StartDate.ToString("MMMM dd, yyyy")</td>
+                                </tr>
+                            }
+                            @if (Model.Events.Count == 0)
+                            {
+                                <tr>
+                                    <td>No event results.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="thread-tab">
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach (var item in Model.Threads)
+                            {
+                                <tr>
+                                    <td>@Html.ActionLink(item.Title, "Thread", "Forum", new { id = item.ForumThreadId }, new { @class = "force-color" })</td>
+                                    <td class="text-right">@item.UpdatedDate.ToString("MMMM dd, yyyy")</td>
+                                </tr>
+                            }
+                            @if (Model.Threads.Count == 0)
+                            {
+                                <tr>
+                                    <td>No forum thread results.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("a.list-group-item").click(function() {
+                $("a.list-group-item").removeClass("active");
+                $(this).addClass("active");
+            });
+        })
+    </script>
+}

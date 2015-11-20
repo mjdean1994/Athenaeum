@@ -1,0 +1,65 @@
+﻿@model Athenaeum.ViewModels.Event.EventArchiveViewModel
+@{
+    ViewBag.Title = "Event Archive";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Upcoming Events</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Upcoming Events", "Index", "Event")</li>
+            <li class="active">Event Archive</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content blog-full-width">
+    @foreach (var item in Model.Events)
+    {
+        <!--Blog Post-->
+        <div class="blog margin-bottom-40">
+            <div class="blog-img">
+                <img class="img-responsive" src="@item.ImageUrl" alt="">
+            </div>
+            <h2>@Html.ActionLink(item.Title, "Details", "Event", new { id = item.EventId }, null)</h2>
+            <div class="blog-post-tags">
+                <ul class="list-unstyled list-inline blog-info">
+                    <li><i class="fa fa-calendar"></i> @item.StartDate.ToString("MMMM dd, yyyy") - @item.EndDate.ToString("MMMM dd, yyyy")</li>
+                    <li><i class="fa fa-pencil"></i> @Html.ActionLink(item.Author.UserName, "Profile", "Account", new { username = item.Author.UserName }, null)</li>
+                    <li><i class="fa fa-globe"></i> @item.Faction</li>
+                </ul>
+            </div>
+            <p>
+                @item.Introduction
+            </p>
+            <p><a class="btn-u btn-u-small" href="@Url.Content("~/Event/Details/" + item.EventId)"><i class="fa fa-plus"></i> Read More</a></p>
+        </div>
+        <!--End Blog Post-->
+        <hr/>
+    }
+    
+    <ul class="pager pager-v3 pager-md no-margin-bottom">
+        @if (Model.CurrentPage <= 1)
+        {
+            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
+        }
+        else
+        {
+            <li class="previous"><a href="@Url.Action("Archive", new {pageNumber = Model.CurrentPage - 1})">&larr; Newer</a></li>
+        }
+
+        <li class="page-amount">@Model.CurrentPage of @Model.LastPage</li>
+
+        @if (Model.CurrentPage >= Model.LastPage)
+        {
+            <li class="next disabled"><a href="#">Older &rarr;</a></li>
+        }
+        else
+        {
+            <li class="next"><a href="@Url.Action("Archive", new {pageNumber = Model.CurrentPage + 1})">Older &rarr;</a></li>
+        }
+
+    </ul>
+</div>
+

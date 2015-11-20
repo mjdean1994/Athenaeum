@@ -1,0 +1,63 @@
+﻿@model Athenaeum.Models.ForumPost
+@{
+    ViewBag.Title = "Edit Post";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            Edit Post
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Forums", "Index", "Forum")</li>
+            <li>@Html.ActionLink(Model.Thread.Section.Name, "Section", "Forum", new { id = Model.Thread.Section.ForumSectionId }, null)</li>
+            <li>@Html.ActionLink(Model.Thread.Title, "Thread", "Forum", new { id = Model.Thread.ForumThreadId }, null)</li>
+            <li class="active">Edit Post</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    <div id="previewFrame">
+        
+    </div>
+
+    @using (Html.BeginForm("PostEditPost", "Forum", null, FormMethod.Post, new {@class = "sky-form contact-style", enctype = "multipart/form-data"}))
+    {
+        <input type="hidden" name="id" value="@Model.ForumPostId"/>
+        <fieldset class="no-padding">
+            <label>Body <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-11 col-md-offset-0">
+                    <div>
+                        <textarea rows="8" required name="body" id="body" class="form-control">@Model.Body.Replace("[br]", "\n")</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" class="btn-u">Edit Post</button>
+                <button type="button" id="previewButton" class="btn-u">Preview</button>
+            </p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#previewButton").click(function () {
+                var bodyVal = $("#body").val();
+                $.post("/Forum/GrabPreview", { id: @Model.ForumPostId, body: bodyVal })
+                    .done(function(data) {
+                        $("#previewFrame").html(data);
+                    })
+                    .fail(function() {
+                        toastr.error("Failed to preview post.");
+                    });
+
+            });
+        });
+</script>
+}

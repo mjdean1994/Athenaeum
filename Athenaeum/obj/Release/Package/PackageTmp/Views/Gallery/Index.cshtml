@@ -1,0 +1,72 @@
+﻿@model Athenaeum.ViewModels.Gallery.GalleryIndexViewModel
+@{
+    ViewBag.Title = "Gallery";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            Gallery
+            @if (Request.IsAuthenticated)
+            {
+                <small><a href="@Url.Content("~/Gallery/Create")"><i class="fa fa-plus-circle"></i></a></small>
+            }
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Explore", "Explore", "Home")</li>
+            <li class="active">Gallery</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    
+    <div id="grid-container" class="row margin-top-20">
+        <div class="team-v5">
+            @foreach (var picture in Model.Pictures)
+            {
+                <div class="col-sm-3">
+                    <a href="@Url.Content("~/Gallery/Details/" + picture.PictureId)">
+                        <div class="team-img">
+
+                            <img class="img-responsive" src="@picture.ImageUrl" alt="">
+                            <div class="team-hover text-center">
+                                <h3>@picture.Title</h3>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+    
+    
+
+    <!-- Pager v3 -->
+    <ul class="pager pager-v3 pager-md margin-bottom-30">
+        @if (Model.CurrentPage <= 1)
+        {
+            <li class="previous disabled"><a href="#">&larr; Newer</a></li>
+        }
+        else
+        {
+            <li class="previous"><a href="@Url.Action("Index", new {pageNumber = Model.CurrentPage - 1})">&larr; Newer</a></li>
+        }
+
+        <li class="page-amount">@Model.CurrentPage of @Model.LastPage</li>
+
+        @if (Model.CurrentPage >= Model.LastPage)
+        {
+            <li class="next disabled"><a href="#">Older &rarr;</a></li>
+        }
+        else
+        {
+            <li class="next"><a href="@Url.Action("Index", new {pageNumber = Model.CurrentPage + 1})">Older &rarr;</a></li>
+        }
+
+    </ul>
+
+    </div>
