@@ -59,13 +59,13 @@
         <div class="overflow-h">
             <div class="pull-left">
                 <h2>
-                    @Model.Name
+                    @Model.Name <small>@Model.Tagline</small>
                     @if (Model.Status == "Inactive")
                     {
                         <small><i class="fa fa-warning" title="Guild is Inactive"></i></small>
                     }
+                    
                 </h2>
-                <span>@Model.Tagline</span>
             </div>
             <div class="pull-right">
                 <span>@Model.Faction [@Html.ActionLink(Model.Owner, "Profile", "Account", new {username = Model.Owner}, null)]</span>

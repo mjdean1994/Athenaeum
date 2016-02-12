@@ -67,6 +67,7 @@ namespace Athenaeum.Controllers
 
         //
         // GET: /Account/Register
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -98,7 +99,7 @@ namespace Athenaeum.Controllers
                         roleManager.Create(nRole);
                     }
                     var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>());
-                    if (userManager.IsInRole(user.Id, "user"))
+                    userManager.AddToRole(user.Id, "user");
                     return RedirectToAction("Index", "Home");
                 }
                 else

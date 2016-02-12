@@ -11,7 +11,6 @@ namespace Athenaeum.Models
     {
         public Character()
         {
-            Brackets = new List<PvpBracket>();
         }
 
         public int CharacterId { get; set; }
@@ -33,10 +32,7 @@ namespace Athenaeum.Models
 
         [ForeignKey("OwnerId")]
         public virtual ApplicationUser Owner { get; set; }
-
-        [ForeignKey("ArmoryCharacterId")]
-        public virtual ArmoryCharacter ArmoryCharacter { get; set; }
-
+        
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
     }

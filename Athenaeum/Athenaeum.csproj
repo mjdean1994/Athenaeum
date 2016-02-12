@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -127,14 +136,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WowDotNetAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WowDotNetAPI.4.0.7\lib\net40\WowDotNetAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -189,6 +196,7 @@
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\GuildController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
@@ -270,9 +278,20 @@
     <Compile Include="Migrations\201505291948220_ContactMessages.Designer.cs">
       <DependentUpon>201505291948220_ContactMessages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602121754238_GetWorkingForPhase3.cs" />
+    <Compile Include="Migrations\201602121754238_GetWorkingForPhase3.Designer.cs">
+      <DependentUpon>201602121754238_GetWorkingForPhase3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602121940016_RemovalOfArmoryCharacter.cs" />
+    <Compile Include="Migrations\201602121940016_RemovalOfArmoryCharacter.Designer.cs">
+      <DependentUpon>201602121940016_RemovalOfArmoryCharacter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602122131271_FridayChanges.cs" />
+    <Compile Include="Migrations\201602122131271_FridayChanges.Designer.cs">
+      <DependentUpon>201602122131271_FridayChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ArmoryCharacter.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentType.cs" />
@@ -351,7 +370,6 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <None Include="Properties\PublishProfiles\wyrmrestathenaeum %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\wyrmrestathenaeum.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -427,6 +445,7 @@
     <Content Include="Views\Admin\Inbox.cshtml" />
     <Content Include="Views\Character\Error.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Map\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -496,12 +515,17 @@
     <EmbeddedResource Include="Migrations\201505291948220_ContactMessages.resx">
       <DependentUpon>201505291948220_ContactMessages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602121754238_GetWorkingForPhase3.resx">
+      <DependentUpon>201602121754238_GetWorkingForPhase3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602121940016_RemovalOfArmoryCharacter.resx">
+      <DependentUpon>201602121940016_RemovalOfArmoryCharacter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602122131271_FridayChanges.resx">
+      <DependentUpon>201602122131271_FridayChanges.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Documents\GitHub\WowDotNetAPI\Explorers\Explorers.csproj">
-      <Project>{2a828141-9ef2-4a8a-8944-b2f2d1775cc9}</Project>
-      <Name>Explorers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CodeKicker.BBCode\CodeKicker.BBCode.csproj">
       <Project>{1c8a5fb6-633a-43bd-b1b7-75a0ddc308f5}</Project>
       <Name>CodeKicker.BBCode</Name>

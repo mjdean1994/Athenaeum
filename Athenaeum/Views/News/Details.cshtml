@@ -23,7 +23,7 @@
     </div>
 </div><!--/breadcrumbs-->
 
-@if (User.IsInRole("admin") || (User.IsInRole("journalist") && Model.Author.UserName == User.Identity.GetUserName()))
+@if (User.IsInRole("admin") || User.IsInRole("god") || (User.IsInRole("journalist") && Model.Author.UserName == User.Identity.GetUserName()))
 {
     <div class="purchase">
         <div class="container">

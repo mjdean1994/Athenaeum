@@ -13,7 +13,7 @@
     </div>
 </div><!--/breadcrumbs-->
 
-@if (User.IsInRole("moderator") || User.IsInRole("admin"))
+@if (User.IsInRole("moderator") || User.IsInRole("god") || User.IsInRole("admin"))
 {
     <div class="purchase">
         <div class="container">

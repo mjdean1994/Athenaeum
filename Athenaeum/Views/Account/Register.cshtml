@@ -32,11 +32,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Password <span class="color-red">*</span></label>
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20", required = true, pattern = ".{6,}" })
                     </div>
                     <div class="col-sm-6">
                         <label>Confirm Password <span class="color-red">*</span></label>
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control margin-bottom-20" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control margin-bottom-20", required = true, pattern = ".{6,}" })
                     </div>
                 </div>
 

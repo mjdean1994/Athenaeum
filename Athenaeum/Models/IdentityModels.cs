@@ -51,6 +51,5 @@ namespace Athenaeum.Models
         public System.Data.Entity.DbSet<Athenaeum.Models.Picture> Pictures { get; set; }
         public System.Data.Entity.DbSet<Athenaeum.Models.Event> Events { get; set; }
         public System.Data.Entity.DbSet<Athenaeum.Models.ContactMessage> ContactMessages { get; set; }
-        public System.Data.Entity.DbSet<Athenaeum.Models.ArmoryCharacter> ArmoryCharacters { get; set; }
     }
 }

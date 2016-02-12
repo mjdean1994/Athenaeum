@@ -60,6 +60,14 @@
                             {
                                 <option value="Death Knight">Death Knight</option>
                             }
+                            @if (Model.Class == "Demon Hunter")
+                            {
+                                <option value="Demon Hunter" selected>Demon Hunter</option>
+                            }
+                            else
+                            {
+                                <option value="Demon Hunter">Demon Hunter</option>
+                            }
                             @if (Model.Class == "Druid")
                             {
                                 <option value="Druid" selected>Druid</option>

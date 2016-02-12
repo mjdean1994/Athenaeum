@@ -51,12 +51,7 @@ namespace Athenaeum.Controllers
             {
                 return RedirectToAction("Error", "Home");
             }
-
-            var uri =
-                string.Format(
-                    "/character/wyrmrest-accord/{0}?fields=pvp",
-                    character.Name);
-
+            
             var vm = new CharacterDetailsViewModel
             {
                 Appearance = character.Appearance,

@@ -117,7 +117,7 @@
 
                         <!-- Search Block -->
                         <li>
-                            <i data-toggle="modal" data-target="#searchModal" class="search fa fa-search search-btn"></i>
+                            <i id="searchToggle" class="search fa fa-search search-btn"></i>
                         </li>
 
                     </ul>
@@ -197,7 +197,12 @@
         }
 
         $(document).ready(function() {
-            $("#changeThemes").click(function() {
+            $("#searchToggle").click(function () {
+                $("#searchModal").modal("show");
+                $("#searchQuery").focus();
+            })
+
+            $("#changeThemes").click(function () {
                 if (localStorage.getItem("theme") == "blue") {
                     localStorage.setItem("theme", "red");
                 } else {

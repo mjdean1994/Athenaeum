@@ -42,6 +42,7 @@
             <input type="hidden" name="sectionId" value="@Model"/>
             <button type="submit" class="btn-u">Submit</button>
             <button type="button" id="previewButton" class="btn-u">Preview</button>
+            <a href="@Url.Action("Section", new {id = Model})" class="btn-u btn-u-default">Cancel</a>
         </fieldset>
     }
 </div>
