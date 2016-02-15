@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Athenaeum", "Athenaeum\Athenaeum.csproj", "{31B103F4-B2B0-480B-A011-40B3687694F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeKicker.BBCode", "CodeKicker.BBCode\CodeKicker.BBCode.csproj", "{1C8A5FB6-633A-43BD-B1B7-75A0DDC308F5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorers", "..\..\Documents\GitHub\WowDotNetAPI\Explorers\Explorers.csproj", "{2A828141-9EF2-4A8A-8944-B2F2D1775CC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{1C8A5FB6-633A-43BD-B1B7-75A0DDC308F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C8A5FB6-633A-43BD-B1B7-75A0DDC308F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C8A5FB6-633A-43BD-B1B7-75A0DDC308F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A828141-9EF2-4A8A-8944-B2F2D1775CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A828141-9EF2-4A8A-8944-B2F2D1775CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A828141-9EF2-4A8A-8944-B2F2D1775CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A828141-9EF2-4A8A-8944-B2F2D1775CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

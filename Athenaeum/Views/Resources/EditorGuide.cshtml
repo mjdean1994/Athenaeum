@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Editor Guide";
+}
+
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Editor Guide</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Resources", "Index", "Resources")</li>
+            <li class="active">Editor Guide</li>
+        </ul>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<div class="container content">
+    <div class="row">
+        <div class="col-sm-8 col-xs-12">
+            <div class="headline"><h2>Editor BBCode Markup Guide</h2></div>
+            <p>Most of the multi-line inputs on the website support a form of BBCode markup for manipulating the format of your text, along with a bunch of other cool things. This guide serves as a way to better understand all of that and empower you to create!</p>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="headline">
+                <h2>Contact Us</h2>
+            </div>
+            <p>We'd love to get your feedback on the website. Have something to say? Let us know!</p>
+            @using (Html.BeginForm("SendContact", "Home", FormMethod.Post, new { @class = "sky-form contact-style" }))
+            {
+                <fieldset class="no-padding">
+                    <label>Name <span class="color-red">*</span></label>
+                    <div class="row sky-space-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            <div>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label>Email <span class="color-red">*</span></label>
+                    <div class="row sky-space-20">
+                        <div class="col-md-7 col-md-offset-0">
+                            <div>
+                                <input type="text" name="email" id="email" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label>Message <span class="color-red">*</span></label>
+                    <div class="row sky-space-20">
+                        <div class="col-md-11 col-md-offset-0">
+                            <div>
+                                <textarea rows="8" name="message" id="message" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><button type="submit" class="btn-u">Send Message</button></p>
+                </fieldset>
+            }
+        </div>
+    </div>
+    
+</div>
