@@ -15,6 +15,7 @@ namespace Athenaeum.Models
             Compositions = new List<Composition>();
             Pictures = new List<Picture>();
             Events = new List<Event>();
+            Rsvps = new List<Rsvp>();
         }
 
         public string BattleTag { get; set; }
@@ -28,6 +29,8 @@ namespace Athenaeum.Models
         public virtual ICollection<Composition> Compositions { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; } 
         public virtual ICollection<Event> Events { get; set; } 
+
+        public virtual ICollection<Rsvp> Rsvps { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -51,5 +54,6 @@ namespace Athenaeum.Models
         public System.Data.Entity.DbSet<Athenaeum.Models.Picture> Pictures { get; set; }
         public System.Data.Entity.DbSet<Athenaeum.Models.Event> Events { get; set; }
         public System.Data.Entity.DbSet<Athenaeum.Models.ContactMessage> ContactMessages { get; set; }
+        public System.Data.Entity.DbSet<Rsvp> Rsvps { get; set; }
     }
 }

@@ -19,7 +19,23 @@ namespace Athenaeum.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /Character/
-        public ActionResult Index(string startLetter)
+        public ActionResult Index()
+        {
+            var vm = db.Characters.OrderByDescending(x => x.UpdatedDate).Take(16).Select(x => new CharacterIndexViewModel
+            {
+                CharacterId = x.CharacterId,
+                Class = x.Class,
+                FullName = x.FullName,
+                Name = x.Name,
+                Race = x.Race,
+                ImageUrl = x.ImageUrl,
+                Introduction = x.Introduction
+            }).ToList();
+
+            return View(vm);
+        }
+
+        public ActionResult Catalog(string startLetter)
         {
             if (string.IsNullOrEmpty(startLetter))
             {

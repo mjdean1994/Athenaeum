@@ -692,3 +692,4 @@ C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\bin\zh-Hant\System.Spatial.r
 C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Debug\Athenaeum.Migrations.GetWorkingForPhase3.resources
 C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Debug\Athenaeum.Migrations.RemovalOfArmoryCharacter.resources
 C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Debug\Athenaeum.Migrations.FridayChanges.resources
+C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Debug\Athenaeum.Migrations.Rsvp.resources

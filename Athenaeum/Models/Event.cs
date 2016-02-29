@@ -8,6 +8,11 @@ namespace Athenaeum.Models
 {
     public class Event
     {
+        public Event()
+        {
+            Attendees = new List<Rsvp>();
+        }
+
         public int EventId { get; set; }
         public string Title { get; set; }
         public string Introduction { get; set; }
@@ -20,5 +25,7 @@ namespace Athenaeum.Models
         
         [ForeignKey("AuthorId")]
         public virtual ApplicationUser Author { get; set; }
+
+        public virtual ICollection<Rsvp> Attendees { get; set; }
     }
 }

@@ -93,8 +93,13 @@
                 @foreach (var item in Model.Events)
                 {
                     <li>
-                        <h3>@Html.ActionLink(item.Title, "Details", "Event", new {id = item.EventId}, null)</h3>
+                        <h3>
+                            @Html.ActionLink(item.Title, "Details", "Event", new {id = item.EventId}, null)
+                            <span class="badge badge-yellow pull-right">@item.Attendees.Where(x => x.Status == 0).Count()</span>
+                            <span class="badge badge-green pull-right">@item.Attendees.Where(x => x.Status == 1).Count()</span>
+                        </h3>
                         <small>@item.StartDate.ToString("MMMM dd, yyyy")</small>
+                        
                     </li>    
                 }
                 

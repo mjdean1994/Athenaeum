@@ -17,7 +17,22 @@ namespace Athenaeum.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         //
         // GET: /Guild/
-        public ActionResult Index(string startLetter)
+        public ActionResult Index()
+        {
+            var vm = db.Guilds.OrderByDescending(x => x.UpdatedDate).Take(10).Select(x => new GuildIndexViewModel
+            {
+                Faction = x.Faction,
+                GuildId = x.GuildId,
+                Name = x.Name,
+                ImageUrl = x.ImageUrl,
+                Introduction = x.Introduction,
+                Tagline = x.Tagline
+            }).ToList();
+
+            return View(vm);
+        }
+
+        public ActionResult Catalog(string startLetter)
         {
             var vm = db.Guilds.Where(x => x.Name.StartsWith(startLetter)).OrderBy(x => x.Name).Select(x => new GuildIndexViewModel
             {

@@ -1,8 +1,8 @@
 ﻿@using CodeKicker.BBCode
 @using Microsoft.AspNet.Identity
-@model Athenaeum.Models.Event
+@model Athenaeum.ViewModels.Event.EventDetailsViewModel
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Event.Title;
 }
 
 <div class="breadcrumbs">
@@ -10,7 +10,7 @@
         <h1 class="pull-left">Upcoming Events</h1>
         <ul class="pull-right breadcrumb">
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-            @if (Model.EndDate > DateTime.Now)
+            @if (Model.Event.EndDate > DateTime.Now)
             {
                 <li>@Html.ActionLink("Upcoming Events", "Index", "Event")</li>
             }
@@ -19,13 +19,13 @@
                 <li>@Html.ActionLink("Event Archive", "Archive", "Event")</li>
             }
             
-            <li class="active">Model.Title</li>
+            <li class="active">@Model.Event.Title</li>
         </ul>
     </div>
 </div><!--/breadcrumbs-->
 
 <div class="container content blog-full-width">
-    @if (User.Identity.GetUserName() == Model.Author.UserName || User.IsInRole("admin"))
+    @if (User.Identity.GetUserName() == Model.Event.Author.UserName || User.IsInRole("admin"))
     {
 
             <!-- Single button -->
@@ -34,7 +34,7 @@
                 <i class="fa fa-cog"></i> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Edit", "Edit", "Event", new { id = Model.EventId }, null)</li>
+                <li>@Html.ActionLink("Edit", "Edit", "Event", new { id = Model.Event.EventId }, null)</li>
                 <li><a href="#" data-toggle="modal" data-target="#deleteModal">Delete</a></li>
             </ul>
         </div>
@@ -47,10 +47,10 @@
                     <h4 class="modal-title" id="myModalLabel"><i class="fa fa-warning"></i> Warning!</h4>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete <strong>@Model.Title</strong>? This action cannot be undone.
+                    Are you sure you want to delete <strong>@Model.Event.Title</strong>? This action cannot be undone.
                 </div>
                   <div class="modal-footer text-right">
-                        @Html.ActionLink("Delete", "Delete", "Event", new { id = Model.EventId }, new {@class = "btn-u"})
+                        @Html.ActionLink("Delete", "Delete", "Event", new { id = Model.Event.EventId }, new {@class = "btn-u"})
                       <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Cancel</button>
                   </div>
             </div>
@@ -60,23 +60,100 @@
     <!--Blog Post-->
     <div class="blog margin-bottom-40">
         <div class="blog-img">
-            <img class="img-responsive" src="@Model.ImageUrl" alt="">
+            <img class="img-responsive" src="@Model.Event.ImageUrl" alt="">
         </div>
-        <h2>@Model.Title</h2>
-        <div class="blog-post-tags">
-            <ul class="list-unstyled list-inline blog-info">
-                <li><i class="fa fa-calendar"></i> @Model.StartDate.ToString("MMMM dd, yyyy") - @Model.EndDate.ToString("MMMM dd, yyyy")</li>
-                <li><i class="fa fa-pencil"></i> @Html.ActionLink(Model.Author.UserName, "Profile", "Account", new { username = Model.Author.UserName }, null)</li>
-                <li><i class="fa fa-globe"></i> @Model.Faction</li>
-            </ul>
+        <h2>@Model.Event.Title</h2>
+        
+        <div class="row">
+            <div class="col-md-9 col-sm-12">
+                <div class="blog-post-tags">
+                    <ul class="list-unstyled list-inline blog-info">
+                        <li><i class="fa fa-calendar"></i> @Model.Event.StartDate.ToString("MMMM dd, yyyy") - @Model.Event.EndDate.ToString("MMMM dd, yyyy")</li>
+                        <li><i class="fa fa-pencil"></i> @Html.ActionLink(Model.Event.Author.UserName, "Profile", "Account", new { username = Model.Event.Author.UserName }, null)</li>
+                        <li><i class="fa fa-globe"></i> @Model.Event.Faction</li>
+                    </ul>
+                </div>
+                <p>
+                    @Model.Event.Introduction
+                </p>
+                <hr />
+                <p>
+                    @Html.Raw(BBCode.ToHtml(Model.Event.Description))
+                </p>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div class="headline margin-bottom-20"><h2>Players</h2></div>
+                <ul class="list-unstyled">
+                    @foreach(var player in Model.Event.Attendees.OrderByDescending(x => x.Status))
+                    {
+                        <li>
+                            <a href="#">@player.User.UserName</a>
+                            @if(player.Status == 1)
+                            {
+                                <small class="text-success"> Accepted</small>
+                            }
+                            else
+                            {
+                                <small class="text-warning"> Tentative</small>
+                            }
+                        </li>
+                    }
+                    @if(Model.Event.Attendees.Count == 0)
+                    {
+                        <p>Nobody has RSVP'd for this event yet.</p>
+                    }
+                </ul>
+                @if (Request.IsAuthenticated)
+                {
+                    <h4>Are you attending?</h4>
+                    <div class="btn-group" style="width:100%;">
+                        @if (Model.CurrentUserStatus == 1)
+                        {
+                            <a href="@Url.Action("SetStatus", "Event", new { eventId = Model.Event.EventId, status = 1 })" class="col-xs-4 btn btn-success active">Yes</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("SetStatus", "Event", new { eventId = Model.Event.EventId, status = 1 })" class="col-xs-4 btn btn-success">Yes</a>
+                        }
+                        
+                        @if (Model.CurrentUserStatus == 0)
+                        {
+                            <a href="@Url.Action("SetStatus", "Event", new { eventId = Model.Event.EventId, status = 0 })" class="col-xs-4 btn btn-warning active">Maybe</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("SetStatus", "Event", new { eventId = Model.Event.EventId, status = 0 })" class="col-xs-4 btn btn-warning">Maybe</a>
+                        }
+                        
+                        @if (Model.CurrentUserStatus == 2)
+                        {
+                            <a href="@Url.Action("SetStatus", "Event", new { eventId = Model.Event.EventId, status = 2 })" class="col-xs-4 btn btn-danger active">No</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("SetStatus", "Event", new { eventId = Model.Event.EventId, status = 2 })" class="col-xs-4 btn btn-danger">No</a>
+                        }
+                    </div>
+                    if (Model.CurrentUserStatus == 2)
+                    {
+                        <p>Your current response is <span class="text-danger font-bold">No</span>.</p>
+                    }
+                    else if (Model.CurrentUserStatus == 1)
+                    {
+                        <p>Your current response is <span class="text-success font-bold">Yes</span>.</p>
+                    }
+                    else
+                    {
+                        <p>Your current response is <span class="text-warning font-bold">Maybe</span>.</p>
+                    }
+                }
+                else
+                {
+                    <h4>@Html.ActionLink("Login", "Login", "Account") to RSVP</h4>
+                }
+
+            </div>
         </div>
-        <p>
-            @Model.Introduction
-        </p>
-        <hr/>
-        <p>
-            @Html.Raw(BBCode.ToHtml(Model.Description))
-        </p>
     </div>
     <!--End Blog Post-->
     
@@ -132,7 +209,7 @@
 {
     <script>
     function loadComments() {
-        var id = @Model.EventId;
+        var id = @Model.Event.EventId;
 
             $("#commentsLoading").removeClass("hidden");
             console.log("Loading comments");
@@ -174,7 +251,7 @@
 
             $("#commentSubmit").click(function() {
                 var body = $("#commentMessage").val();
-                var id = @Model.EventId;
+                var id = @Model.Event.EventId;
 
                 if (body == "") {
                     toastr.error("You have to input something into the comment box.");

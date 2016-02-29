@@ -21,54 +21,31 @@
 </div><!--/breadcrumbs-->
 
 <div class="container content-sm">
-    
-    <nav class="text-center">
-        <ul class="pagination pagination-sm">
-            <li>@Html.ActionLink("A", "Index", "Character", new {startLetter="A"}, null)</li>
-            <li>@Html.ActionLink("B", "Index", "Character", new {startLetter="B"}, null)</li>
-            <li>@Html.ActionLink("C", "Index", "Character", new {startLetter="C"}, null)</li>
-            <li>@Html.ActionLink("D", "Index", "Character", new {startLetter="D"}, null)</li>
-            <li>@Html.ActionLink("E", "Index", "Character", new {startLetter="E"}, null)</li>
-            <li>@Html.ActionLink("F", "Index", "Character", new {startLetter="F"}, null)</li>
-            <li>@Html.ActionLink("G", "Index", "Character", new {startLetter="G"}, null)</li>
-            <li>@Html.ActionLink("H", "Index", "Character", new {startLetter="H"}, null)</li>
-            <li>@Html.ActionLink("I", "Index", "Character", new {startLetter="I"}, null)</li>
-            <li>@Html.ActionLink("J", "Index", "Character", new {startLetter="J"}, null)</li>
-            <li>@Html.ActionLink("K", "Index", "Character", new {startLetter="K"}, null)</li>
-            <li>@Html.ActionLink("L", "Index", "Character", new {startLetter="L"}, null)</li>
-            <li>@Html.ActionLink("M", "Index", "Character", new {startLetter="M"}, null)</li>
-            <li>@Html.ActionLink("N", "Index", "Character", new {startLetter="N"}, null)</li>
-            <li>@Html.ActionLink("O", "Index", "Character", new {startLetter="O"}, null)</li>
-            <li>@Html.ActionLink("P", "Index", "Character", new {startLetter="P"}, null)</li>
-            <li>@Html.ActionLink("Q", "Index", "Character", new {startLetter="Q"}, null)</li>
-            <li>@Html.ActionLink("R", "Index", "Character", new {startLetter="R"}, null)</li>
-            <li>@Html.ActionLink("S", "Index", "Character", new {startLetter="S"}, null)</li>
-            <li>@Html.ActionLink("T", "Index", "Character", new {startLetter="T"}, null)</li>
-            <li>@Html.ActionLink("U", "Index", "Character", new {startLetter="U"}, null)</li>
-            <li>@Html.ActionLink("V", "Index", "Character", new {startLetter="V"}, null)</li>
-            <li>@Html.ActionLink("W", "Index", "Character", new {startLetter="W"}, null)</li>
-            <li>@Html.ActionLink("X", "Index", "Character", new {startLetter="X"}, null)</li>
-            <li>@Html.ActionLink("Y", "Index", "Character", new {startLetter="Y"}, null)</li>
-            <li>@Html.ActionLink("Z", "Index", "Character", new {startLetter="Z"}, null)</li>
-        </ul>
-    </nav>
 
-    <table class="table table-striped">
-        <tbody>
+    <div class="headline margin-bottom-35"><h2>Latest Characters</h2></div>
+
+    <div class="row high-rated margin-bottom-20">
         @foreach (var character in Model)
         {
-            <tr>
-                <td>@Html.ActionLink(character.Name, "Details", "Character", new {id = character.CharacterId}, null)</td>
-                <td>@character.FullName</td>
-                <td class="text-right">@character.Race @character.Class</td>
-            </tr>
+            <div class="col-md-3 col-sm-6 col-xs-12 ">
+                <div class="easy-block-v1">
+                    <img src="@character.ImageUrl" class="img-bordered"/>
+                    <div class="">
+                        <h3>@character.FullName</h3>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><span class="color-green">@character.Race @character.Class</span></li>
+                    </ul>
+                    <p class="text-justify">
+                        @character.Introduction
+                    </p>
+                    <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = character.CharacterId })">View Profile</a>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
         }
-        @if (Model.Count == 0)
-        {
-            <tr>
-                <td>No characters found.</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+    </div>
+    <hr/>
+    @Html.ActionLink("Character Catalog", "Catalog", "Character", null, new { @class = "btn-u"})
 </div>

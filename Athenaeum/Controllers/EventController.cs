@@ -67,7 +67,24 @@ namespace Athenaeum.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-            return View(vEvent);
+            var vm = new EventDetailsViewModel
+            {
+                Event = vEvent
+            };
+
+            if(Request.IsAuthenticated)
+            {
+                if(db.Rsvps.Where(x => x.EventId == vm.Event.EventId && x.User.UserName == User.Identity.Name).Any())
+                {
+                    vm.CurrentUserStatus = db.Rsvps.Where(x => x.EventId == vm.Event.EventId && x.User.UserName == User.Identity.Name).First().Status;
+                }
+                else
+                {
+                    vm.CurrentUserStatus = 2;
+                }
+            }
+
+            return View(vm);
         }
 
         public ActionResult Edit(int id, string errorString)
@@ -244,6 +261,38 @@ namespace Athenaeum.Controllers
             db.SaveChanges();
 
             return Json(new { result = true });
+        }
+
+        public ActionResult SetStatus(int eventId, int status)
+        {
+            var eRsvp = db.Rsvps.FirstOrDefault(x => x.EventId == eventId && x.User.UserName == User.Identity.Name);
+
+            if(eRsvp == null && status != 2)
+            {
+                eRsvp = new Rsvp
+                {
+                    User = db.Users.First(x => x.UserName == User.Identity.Name),
+                    EventId = eventId,
+                    Status = status
+                };
+
+                db.Rsvps.Add(eRsvp);
+            }
+            else
+            {
+                if(status == 2)
+                {
+                    db.Rsvps.Remove(eRsvp);
+                }
+                else
+                {
+                    eRsvp.Status = status;
+                }
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = eventId });
         }
 	}
 }
