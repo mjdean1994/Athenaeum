@@ -1,0 +1,56 @@
+﻿@model List<Athenaeum.ViewModels.WarZone.WarZoneIndexViewModel>
+@{
+    ViewBag.Title = "War Zones";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">
+            War Zones
+        </h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li class="active">War Zones</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+@if (User.IsInRole("admin") || User.IsInRole("god"))
+{
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>War Zone Administration</span>
+                    <p>This is an Admin-only feature. If you believe you are seeing this section in error, please contact us immediately so that we can resolve the problem.</p>
+                </div>
+                <div class="col-md-12 text-center btn-buy">
+                    <a href="@Url.Action("Create", "WarZone")" class="btn-u btn-u-lg">Create War Zone</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="container content-sm">
+    @foreach (var continent in Model.Select(sel => sel.Continent).Distinct().ToList())
+    {
+        <div class="headline margin-bottom-35"><h2>@continent</h2></div>
+        <div class="list-group">
+        @foreach (var zone in Model.Where(x => x.Continent == continent))
+        {
+            <a class="list-group-item" href="@Url.Action("Details", "WarZone", new { id = zone.WarZoneId })">
+                <h3 class="text-center">
+                    @zone.Name
+                    <br />
+                    <small>Last Updated: @zone.UpdatedDate.ToString("dd MMMM yyyy")</small>
+                </h3>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+                    <div class="progress-bar progress-bar-dark-blue" style="width: @zone.AlliancePercent%"></div>
+                </div>
+            </a>
+        }
+        </div>
+    }
+    
+</ul>

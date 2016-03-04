@@ -1,0 +1,125 @@
+﻿@model Athenaeum.ViewModels.WarZone.WarZoneDetailsViewModel
+@using CodeKicker.BBCode
+@{
+    ViewBag.Title = "War Zone: " + Model.Name;
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">@Model.Name</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("War Zones", "Index", "War Zones")</li>
+            <li class="active">@Model.Name</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+@if (User.IsInRole("admin") || User.IsInRole("god"))
+{
+    <div class="purchase">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>War Zone Administration</span>
+                    <p>This is an Admin-only feature. If you believe you are seeing this section in error, please contact us immediately so that we can resolve the problem.</p>
+                </div>
+                <div class="col-md-12 text-center btn-buy">
+                    <a href="@Url.Action("Edit", "WarZone", new { id = Model.WarZoneId})" class="btn-u btn-u-lg">Edit War Zone</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <br />
+            <div class="row">
+                <div class="col-xs-5">
+                    <h4>@Model.AllianceForce</h4>
+                </div>
+                <div class="col-xs-2 text-center">
+                    @if (Model.Influence > 0)
+                    {
+                        <h4 class="text-dark-blue">@Math.Abs(Model.Influence) / @Model.Limit</h4>
+                    }
+                    else if (Model.Influence < 0)
+                    {
+                        <h4 class="text-danger">@Math.Abs(Model.Influence) / @Model.Limit</h4>
+                    }
+                    else
+                    {
+                        <h4>0 / @Model.Limit</h4>
+                    }
+
+                </div>
+                <div class="col-xs-5 text-right">
+                    <h4>@Model.HordeForce</h4>
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+                <div class="progress-bar progress-bar-dark-blue" style="width: @Model.AlliancePercent%"></div>
+            </div>
+            
+            <small>Last Updated: @Model.UpdatedDate.ToString("dd MMMM yyyy")</small>
+            
+            @foreach (var battle in Model.Battles)
+            {
+                <div class="news-v3">
+                    <div class="news-v3-in news-v3-in-sm">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <div class="headline-left">
+                                    <h2 class="headline-brd heading-md">@battle.Name</h2>
+                                </div>
+                                <p>
+                                    @Html.Raw(BBCode.ToHtml(battle.Description))
+                                </p>
+                            </div>
+                            <div class="col-xs-3">
+                                <table class="table">
+                                    <tr>
+                                        <th>Alliance Leader</th>
+                                        <td>@battle.AllianceCommander</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Horde Leader</th>
+                                        <td>@battle.HordeCommander</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Outcome</th>
+                                        <td>@battle.Outcome (
+                                        @if (battle.Outcome == "Horde Victory")
+                                        {
+                                            <span class="text-danger">+@battle.AllianceForces</span>
+                                        }
+                                        else if(battle.Outcome == "Alliance Victory")
+                                        {
+                                            <span class="text-dark-blue">+@battle.HordeForces</span>
+                                        }
+                                        
+                                        )</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date</th>
+                                        <td>@battle.Date.ToString("dd MMMM yyyy")</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+            }
+
+            @if(Request.IsAuthenticated)
+            {
+                <button class="btn-u btn-u-default">Add Battle</button>
+            }
+        </div>
+    </div>
+</div>

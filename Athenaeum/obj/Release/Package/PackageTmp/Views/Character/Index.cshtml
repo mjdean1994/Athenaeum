@@ -25,26 +25,368 @@
     <div class="headline margin-bottom-35"><h2>Latest Characters</h2></div>
 
     <div class="row high-rated margin-bottom-20">
-        @foreach (var character in Model)
-        {
-            <div class="col-md-3 col-sm-6 col-xs-12 ">
-                <div class="easy-block-v1">
-                    <img src="@character.ImageUrl" class="img-bordered"/>
-                    <div class="">
-                        <h3>@character.FullName</h3>
+        <div class="row">
+            @if (Model.Count >= 1)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[0].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[0].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[0].Race @Model[0].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[0].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[0].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
                     </div>
-                    <ul class="list-unstyled">
-                        <li><span class="color-green">@character.Race @character.Class</span></li>
-                    </ul>
-                    <p class="text-justify">
-                        @character.Introduction
-                    </p>
-                    <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = character.CharacterId })">View Profile</a>
-                    <br/>
-                    <br/>
                 </div>
+            }
+            
+            @if (Model.Count >= 2)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[1].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[1].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[1].Race @Model[1].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[1].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[1].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Count >= 3)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[2].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[2].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[2].Race @Model[2].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[2].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[2].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Count >= 4)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[3].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[3].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[3].Race @Model[3].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[3].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[3].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row">
+            @if (Model.Count >= 5)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[4].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[4].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[4].Race @Model[4].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[4].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[4].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Count >= 6)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[5].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[5].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[5].Race @Model[5].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[5].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[5].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Count >= 7)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[6].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[6].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[6].Race @Model[6].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[6].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[6].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+            
+            @if (Model.Count >= 8)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[7].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[7].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[7].Race @Model[7].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[7].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[7].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+            
+        </div>
+        <div class="row">
+            @if (Model.Count >= 9)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[8].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[8].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[8].Race @Model[8].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[8].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[8].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count >= 10)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[9].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[9].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[9].Race @Model[9].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[9].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[9].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count >= 11)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[10].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[10].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[10].Race @Model[10].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[10].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[10].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count >= 12)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[11].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[11].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[11].Race @Model[11].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[11].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[11].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row">
+            @if (Model.Count >= 13)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[12].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[12].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[12].Race @Model[12].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[12].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[12].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count >= 14)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[13].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[13].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[13].Race @Model[13].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[13].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[13].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count >= 15)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[14].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[14].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[14].Race @Model[14].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[14].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[14].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+
+            @if (Model.Count >= 16)
+            {
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="easy-block-v1">
+                        <img src="@Model[15].ImageUrl" class="img-bordered" />
+                        <div class="">
+                            <h3>@Model[15].FullName</h3>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li><span class="color-green">@Model[15].Race @Model[15].Class</span></li>
+                        </ul>
+                        <p class="text-justify">
+                            @Model[15].Introduction
+                        </p>
+                        <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = Model[15].CharacterId })">View Profile</a>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            }
+        </div>
+        @*foreach (var character in Model)
+    {
+        <div class="col-md-3 col-sm-6 col-xs-12 ">
+            <div class="easy-block-v1">
+                <img src="@character.ImageUrl" class="img-bordered"/>
+                <div class="">
+                    <h3>@character.FullName</h3>
+                </div>
+                <ul class="list-unstyled">
+                    <li><span class="color-green">@character.Race @character.Class</span></li>
+                </ul>
+                <p class="text-justify">
+                    @character.Introduction
+                </p>
+                <a class="btn-u btn-u-sm" href="@Url.Action("Details", "Character", new { id = character.CharacterId })">View Profile</a>
+                <br/>
+                <br/>
             </div>
-        }
+        </div>
+    }*@
     </div>
     <hr/>
     @Html.ActionLink("Character Catalog", "Catalog", "Character", null, new { @class = "btn-u"})

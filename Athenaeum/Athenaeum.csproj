@@ -196,10 +196,10 @@
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\GuildController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\WarZoneController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -295,8 +295,21 @@
     <Compile Include="Migrations\201602291812525_Rsvp.Designer.cs">
       <DependentUpon>201602291812525_Rsvp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603041810480_WarZones.cs" />
+    <Compile Include="Migrations\201603041810480_WarZones.Designer.cs">
+      <DependentUpon>201603041810480_WarZones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603041817073_AddContinentToWarZone.cs" />
+    <Compile Include="Migrations\201603041817073_AddContinentToWarZone.Designer.cs">
+      <DependentUpon>201603041817073_AddContinentToWarZone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603042121101_MoreBattleFields.cs" />
+    <Compile Include="Migrations\201603042121101_MoreBattleFields.Designer.cs">
+      <DependentUpon>201603042121101_MoreBattleFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Battle.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentType.cs" />
@@ -313,6 +326,7 @@
     <Compile Include="Models\NewsCategory.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Rsvp.cs" />
+    <Compile Include="Models\WarZone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BattleNetApiService.cs" />
     <Compile Include="Startup.cs" />
@@ -336,6 +350,8 @@
     <Compile Include="ViewModels\News\NewsArchiveViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchResultViewModel.cs" />
     <Compile Include="ViewModels\Shared\CommentViewModel.cs" />
+    <Compile Include="ViewModels\WarZone\WarZoneDetailsViewModel.cs" />
+    <Compile Include="ViewModels\WarZone\WarZoneIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -453,12 +469,15 @@
     <Content Include="Views\Admin\Inbox.cshtml" />
     <Content Include="Views\Character\Error.cshtml" />
     <Content Include="Views\Admin\Users.cshtml" />
-    <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Resources\Index.cshtml" />
     <Content Include="Views\Resources\EditorGuide.cshtml" />
     <Content Include="Views\Resources\Timeline.cshtml" />
     <Content Include="Views\Character\Catalog.cshtml" />
     <Content Include="Views\Guild\Catalog.cshtml" />
+    <Content Include="Views\WarZone\Index.cshtml" />
+    <Content Include="Views\WarZone\Create.cshtml" />
+    <Content Include="Views\WarZone\Details.cshtml" />
+    <Content Include="Views\WarZone\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -539,6 +558,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602291812525_Rsvp.resx">
       <DependentUpon>201602291812525_Rsvp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603041810480_WarZones.resx">
+      <DependentUpon>201603041810480_WarZones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603041817073_AddContinentToWarZone.resx">
+      <DependentUpon>201603041817073_AddContinentToWarZone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603042121101_MoreBattleFields.resx">
+      <DependentUpon>201603042121101_MoreBattleFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

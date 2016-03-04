@@ -1,0 +1,150 @@
+﻿@model Athenaeum.ViewModels.WarZone.WarZoneDetailsViewModel
+@using CodeKicker.BBCode
+@{
+    ViewBag.Title = "Edit War Zone";
+}
+
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Edit War Zone</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("War Zones", "Index", "WarZone")</li>
+            <li>@Html.ActionLink(Model.Name, "Details", "WarZone", new { id = Model.WarZoneId }, null)</li>
+            <li class="active">Edit War Zone</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostEdit", "WarZone", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="warZoneId" value="@Model.WarZoneId" />
+
+        <fieldset class="no-padding">
+            <label>Name <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="name" id="name" value="@Model.Name" required class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Alliance Force <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input required type="text" value="@Model.AllianceForce" name="allianceForce" id="allianceForce" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Horde Force <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input required type="text" name="hordeForce" value="@Model.HordeForce" id="hordeForce" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Continent <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="continent" required>
+                            @if (Model.Continent == "Kalimdor")
+                            {
+                                <option selected value="Kalimdor">Kalimdor</option>
+                            }
+                            else
+                            {
+                                <option value="Kalimdor">Kalimdor</option>
+                            }
+                            @if (Model.Continent == "Eastern Kingdoms")
+                            {
+                                <option selected value="Eastern Kingdoms">Eastern Kingdoms</option>
+                            }
+                            else
+                            {
+                                <option value="Eastern Kingdoms">Eastern Kingdoms</option>
+                            }
+                            @if (Model.Continent == "Northrend")
+                            {
+                                <option selected value="Northrend">Northrend</option>
+                            }
+                            else
+                            {
+                                <option value="Northrend">Northrend</option>
+                            }
+                            @if (Model.Continent == "Pandaria")
+                            {
+                                <option selected value="Pandaria">Pandaria</option>
+                            }
+                            else
+                            {
+                                <option value="Pandaria">Pandaria</option>
+                            }
+                            @if (Model.Continent == "Outland")
+                            {
+                                <option selected value="Outland">Outland</option>
+                            }
+                            else
+                            {
+                                <option value="Outland">Outland</option>
+                            }
+                            @if (Model.Continent == "Draenor")
+                            {
+                                <option selected value="Draenor">Draenor</option>
+                            }
+                            else
+                            {
+                                <option value="Draenor">Draenor</option>
+                            }
+                            @if (Model.Continent == "Broken Isles")
+                            {
+                                <option selected value="Broken Isles">Broken Isles</option>
+                            }
+                            else
+                            {
+                                <option value="Broken Isles">Broken Isles</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" class="btn-u" id="submitBtn">Edit War Zone</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#submitBtn").click(function() {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Updating War Zone...");
+                $("#submitBtn").type = "button";
+            });
+        })
+    </script>
+}
+
+
+
+

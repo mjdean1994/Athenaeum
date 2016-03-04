@@ -504,3 +504,6 @@ C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.pdb
 C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.Migrations.RemovalOfArmoryCharacter.resources
 C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.Migrations.FridayChanges.resources
 C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.Migrations.Rsvp.resources
+C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.Migrations.WarZones.resources
+C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.Migrations.AddContinentToWarZone.resources
+C:\Users\mdean\Documents\GitHub\Athenaeum\Athenaeum\obj\Release\Athenaeum.Migrations.MoreBattleFields.resources

@@ -1,0 +1,91 @@
+﻿@using CodeKicker.BBCode
+@{
+    ViewBag.Title = "Create War Zone";
+}
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Create War Zone</h1>
+        <ul class="pull-right breadcrumb">
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("War Zones", "Index", "WarZone")</li>
+            <li class="active">Create War Zone</li>
+        </ul>
+    </div>
+</div><!--/breadcrumbs-->
+
+<div class="container content-sm">
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            @Html.Raw(BBCode.ToHtml(ViewBag.Error))
+        </div>
+    }
+
+    @using (Html.BeginForm("PostCreate", "WarZone", null, FormMethod.Post, new { @class = "sky-form contact-style", enctype = "multipart/form-data" }))
+    {
+        <fieldset class="no-padding">
+            <label>Name <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input type="text" name="name" id="name" required class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Alliance Force <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input required type="text" name="allianceForce" id="allianceForce" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Horde Force <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <input required type="text" name="hordeForce" id="hordeForce" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <label>Continent <span class="color-red">*</span></label>
+            <div class="row sky-space-20">
+                <div class="col-md-7 col-md-offset-0">
+                    <div>
+                        <select class="form-control" name="continent" required>
+                            <option value="Kalimdor">Kalimdor</option>
+                            <option value="Eastern Kingdoms">Eastern Kingdoms</option>
+                            <option value="Northrend">Northrend</option>
+                            <option value="Pandaria">Pandaria</option>
+                            <option value="Outland">Outland</option>
+                            <option value="Draenor">Draenor</option>
+                            <option value="Broken Isles">Broken Isles</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <p><button type="submit" class="btn-u" id="submitBtn">Create War Zone</button></p>
+        </fieldset>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#submitBtn").click(function() {
+                $("#submitBtn").addClass("disabled");
+                $("#submitBtn").disabled = true;
+                $("#submitBtn").html("<i class='fa fa-spin fa-spinner'></i> Creating War Zone...");
+                $("#submitBtn").type = "button";
+            });
+        })
+    </script>
+}
+

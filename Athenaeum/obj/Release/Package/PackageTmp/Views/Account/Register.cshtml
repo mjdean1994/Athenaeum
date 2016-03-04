@@ -25,19 +25,22 @@
                     <h2>Register a new account</h2>
                     <p>Already Signed Up? @Html.ActionLink("Login", "Login", "Account") to your account!</p>
                 </div>
-
+                <div class="alert alert-danger hidden" id="errors">
+                </div>
                 <label>Username <span class="color-red">*</span></label>
                 @Html.TextBoxFor(m => m.UserName, new { @class = "form-control margin-bottom-20" })
-
+                @Html.ValidationMessageFor(m => m.UserName)
                 <div class="row">
                     <div class="col-sm-6">
-                        <label>Password <span class="color-red">*</span></label>
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20", required = true, pattern = ".{6,}" })
+                        <label>Password <small>(At least 8 characters)</small> <span class="color-red">*</span></label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control margin-bottom-20", required = true, pattern = ".{8,}" })
                     </div>
                     <div class="col-sm-6">
                         <label>Confirm Password <span class="color-red">*</span></label>
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control margin-bottom-20", required = true, pattern = ".{6,}" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control margin-bottom-20", required = true, pattern = ".{6,}" })                        
                     </div>
+                    @Html.ValidationMessageFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
                 </div>
 
                 <hr>
@@ -45,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-6 checkbox">
                         <label>
-                            By registers, you agree to the @Html.ActionLink("Terms of Service", "Terms", "Home").
+                            By registering, you agree to the @Html.ActionLink("Terms of Service", "Terms", "Home").
                         </label>
                     </div>
                     <div class="col-lg-6 text-right">
@@ -57,3 +60,12 @@
     </div>
 </div><!--/container-->
 <!--=== End Content Part ===-->
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+        })
+    </script>   
+}

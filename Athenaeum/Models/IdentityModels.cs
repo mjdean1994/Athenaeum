@@ -55,5 +55,7 @@ namespace Athenaeum.Models
         public System.Data.Entity.DbSet<Athenaeum.Models.Event> Events { get; set; }
         public System.Data.Entity.DbSet<Athenaeum.Models.ContactMessage> ContactMessages { get; set; }
         public System.Data.Entity.DbSet<Rsvp> Rsvps { get; set; }
+        public System.Data.Entity.DbSet<WarZone> WarZones { get; set; }
+        public System.Data.Entity.DbSet<Battle> Battles { get; set; }
     }
 }
