@@ -20,7 +20,7 @@
 <!--=== End Breadcrumbs ===-->
 <!--=== Content Part ===-->
 <div class="container content" style="margin-top:0px;">
-    @if (User.Identity.GetUserName() == Model.Owner || User.IsInRole("admin"))
+    @if (User.Identity.GetUserName() == Model.Owner || User.IsInRole("admin") || User.IsInRole("god"))
     {
                 <!-- Single button -->
         <div class="btn-group pull-right">

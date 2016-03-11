@@ -157,6 +157,57 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <label>Alliance Forces <small>(The number of Alliance participants)</small> <span class="color-red">*</span></label>
+                                    <div class="row sky-space-20">
+                                        <div class="col-md-7 col-md-offset-0">
+                                            <div>
+                                                <input type="number" name="allianceForces" id="allianceForces" required class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Horde Forces <small>(The number of Horde participants)</small> <span class="color-red">*</span></label>
+                                    <div class="row sky-space-20">
+                                        <div class="col-md-7 col-md-offset-0">
+                                            <div>
+                                                <input type="number" name="hordeForces" id="hordeForces" required class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Description</label>
+                                    <div class="row sky-space-20">
+                                        <div class="col-md-11 col-md-offset-0">
+                                            <div>
+                                                <textarea rows="8" name="description" id="description" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Outcome <span class="color-red">*</span></label>
+                                    <div class="row sky-space-20">
+                                        <div class="col-md-7 col-md-offset-0">
+                                            <div>
+                                                <select class="form-control" name="outcome" required>
+                                                    <option value="Alliance Victory">Alliance Victory</option>
+                                                    <option value="Horde Victory">Horde Victory</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Date <span class="color-red">*</span></label>
+                                    <div class="row sky-space-20">
+                                        <div class="col-md-7 col-md-offset-0">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" name="date" required />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="warzoneId" value="@Model.WarZoneId" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn-u btn-u-default" data-dismiss="modal">Cancel</button>

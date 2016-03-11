@@ -167,7 +167,7 @@ namespace Athenaeum.Controllers
         {
             var eGuild = db.Guilds.Find(id);
 
-            if (eGuild.Owner.UserName != User.Identity.GetUserName() && !User.IsInRole("admin"))
+            if (eGuild.Owner.UserName != User.Identity.GetUserName() && !User.IsInRole("admin") && !User.IsInRole("god"))
             {
                 return RedirectToAction("Details", new {id});
             }
@@ -196,7 +196,7 @@ namespace Athenaeum.Controllers
 
 
 
-            if (User.Identity.GetUserName() == eGuild.Owner.UserName || User.IsInRole("admin"))
+            if (User.Identity.GetUserName() == eGuild.Owner.UserName || User.IsInRole("admin") || User.IsInRole("god"))
             {
                 var isValid = true;
                 var errorList = new List<string>();
@@ -252,7 +252,7 @@ namespace Athenaeum.Controllers
         {
             var dGuild = db.Guilds.Find(id);
 
-            if (User.Identity.GetUserName() == dGuild.Owner.UserName || User.IsInRole("admin"))
+            if (User.Identity.GetUserName() == dGuild.Owner.UserName || User.IsInRole("admin") || User.IsInRole("god"))
             {
                 db.Guilds.Remove(dGuild);
                 db.SaveChanges();
